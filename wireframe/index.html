@@ -224,10 +224,14 @@
   .b-top p{max-width:38ch;font-size:16px;line-height:1.4}
   .b-marq{position:relative;z-index:1;margin-top:clamp(40px,11vh,120px);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
   .b-track{display:flex;width:max-content}
-  .b-logo{flex:0 0 auto;width:clamp(150px,14vw,220px);height:84px;margin-right:clamp(32px,5vw,80px)}
+  .b-marq{--ls:1}
+  .b-logo{position:relative;flex:0 0 auto;height:56px;padding:0 clamp(20px,3.2vw,48px);display:flex;align-items:center;justify-content:center}
+  .b-logo img{height:calc(26px * var(--ls));width:auto;display:block;filter:brightness(0)}
+  [data-theme=dark] .b-logo img,[data-theme=party] .b-logo img{filter:brightness(0) invert(1)}
+  .b-txt{font:700 26px/1 var(--font-display);letter-spacing:-.03em;color:var(--ink);white-space:nowrap}
   .b-marq:hover .b-track{animation-play-state:paused}
   @keyframes marq{to{transform:translateX(-50%)}}
-  @media(prefers-reduced-motion:no-preference){.b-track{animation:marq 32s linear infinite}}
+  @media(prefers-reduced-motion:no-preference){.b-track{animation:marq 50s linear infinite}}
   @media(prefers-reduced-motion:reduce){.b-marq{overflow-x:auto}}
   /* ============ W MEDIACH (karuzela jak Apple) ============ */
   .press-sec{overflow:hidden}
@@ -290,7 +294,7 @@
     .sk-r{grid-template-columns:30px 1fr auto;gap:10px;padding:14px 12px}.sk-r .cat,.sk-th{display:none}
     .tiles{grid-template-columns:repeat(2,1fr);grid-template-rows:none;height:auto}.tile{aspect-ratio:1}
     .sk-head{grid-template-columns:1fr;gap:12px}
-    .b-top{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}.p-head{flex-direction:column;align-items:flex-start;gap:10px}
+    .b-marq{--ls:.72}.b-top{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}.p-head{flex-direction:column;align-items:flex-start;gap:10px}
     .q-grid{height:auto;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:10px}
     .q-photo{grid-area:1/1/2/3;height:min(38svh,320px)}
     .q-name{grid-area:2/1}.q-who{grid-area:2/2}.q-mail{grid-area:3/1}.q-ask{grid-area:3/2}.q-btn{grid-area:4/1/5/3;height:60px}
@@ -476,7 +480,7 @@
 <!-- 7 BRANDS -->
 <section class="brands-sec" id="marki">
   <span class="tag">07 · MARKI (≈ Partners &amp; Campaigns)</span>
-  <div class="note">Klon Lando: nagłówek + opis, duża grafika w tle (tu placeholder, zastąpi ją własna), pod spodem logo w pętli. Numery logo (1–8) pokazują moment zapętlenia: po 8 wraca 1. Hover zatrzymuje ruch. Wymaga zgody na użycie logotypów.</div>
+  <div class="note">Klon Lando: nagłówek + opis, duża grafika w tle (tu placeholder, zastąpi ją własna), pod spodem logo w pętli. Logo w jednolitej czerni (w ciemnych motywach białe), skalowane do podobnej powierzchni. Wszystkie logo mają 26 px wysokości. CCC, CEDC, Dr Witt i Oshee to tymczasowe napisy, do podmiany na oficjalne pliki. Hover zatrzymuje ruch. Wymaga zgody na użycie logotypów.</div>
   <div class="b-art" aria-hidden="true">Collabs</div>
   <div class="in b-top">
     <h2 class="b-h"><b data-copy="brands1" style="font-weight:700">Partnerzy</b><span data-copy="brands2">&amp; kampanie</span></h2>
@@ -484,8 +488,8 @@
   </div>
   <div class="b-marq" aria-label="Marki, z którymi współpracowała">
     <div class="b-track">
-      <div class="ph b-logo"><span>logo 1</span></div><div class="ph b-logo"><span>logo 2</span></div><div class="ph b-logo"><span>logo 3</span></div><div class="ph b-logo"><span>logo 4</span></div><div class="ph b-logo"><span>logo 5</span></div><div class="ph b-logo"><span>logo 6</span></div><div class="ph b-logo"><span>logo 7</span></div><div class="ph b-logo"><span>logo 8</span></div>
-      <div style="display:contents" aria-hidden="true"><div class="ph b-logo"><span>logo 1</span></div><div class="ph b-logo"><span>logo 2</span></div><div class="ph b-logo"><span>logo 3</span></div><div class="ph b-logo"><span>logo 4</span></div><div class="ph b-logo"><span>logo 5</span></div><div class="ph b-logo"><span>logo 6</span></div><div class="ph b-logo"><span>logo 7</span></div><div class="ph b-logo"><span>logo 8</span></div></div>
+      <div class="b-logo"><img src="assets/brands/superbet.svg" alt="Superbet"></div><div class="b-logo"><img src="assets/brands/visa.svg" alt="VISA"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CCC</span></div><div class="b-logo"><img src="assets/brands/converse.svg" alt="Converse"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Dr Witt</span></div><div class="b-logo"><img src="assets/brands/oysho.svg" alt="OYSHO"></div><div class="b-logo"><img src="assets/brands/pernod-ricard.svg" alt="Pernod Ricard"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CEDC</span></div><div class="b-logo"><img src="assets/brands/glo.svg" alt="glo"></div><div class="b-logo"><img src="assets/brands/plus.svg" alt="Plus"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Oshee</span></div><div class="b-logo"><img src="assets/brands/decathlon.svg" alt="Decathlon"></div><div class="b-logo"><img src="assets/brands/perla.svg" alt="Perła"></div><div class="b-logo"><img src="assets/brands/t-mobile.svg" alt="T-Mobile"></div>
+      <div style="display:contents" aria-hidden="true"><div class="b-logo"><img src="assets/brands/superbet.svg" alt=""></div><div class="b-logo"><img src="assets/brands/visa.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CCC</span></div><div class="b-logo"><img src="assets/brands/converse.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Dr Witt</span></div><div class="b-logo"><img src="assets/brands/oysho.svg" alt=""></div><div class="b-logo"><img src="assets/brands/pernod-ricard.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CEDC</span></div><div class="b-logo"><img src="assets/brands/glo.svg" alt=""></div><div class="b-logo"><img src="assets/brands/plus.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Oshee</span></div><div class="b-logo"><img src="assets/brands/decathlon.svg" alt=""></div><div class="b-logo"><img src="assets/brands/perla.svg" alt=""></div><div class="b-logo"><img src="assets/brands/t-mobile.svg" alt=""></div></div>
     </div>
   </div>
 </section>
