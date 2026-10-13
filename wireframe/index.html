@@ -128,6 +128,8 @@
   .hero .r .zoom{position:absolute;inset:0;z-index:5;pointer-events:none;opacity:0;clip-path:inset(0 round var(--radius));transition:clip-path .45s cubic-bezier(.2,.8,.2,1),opacity .2s .25s;font-size:14px}
   .hero .r .zoom.on{opacity:1;transition:clip-path .45s cubic-bezier(.2,.8,.2,1),opacity .1s}
   .hero .r .zoom span{background:var(--ph2)}
+  .hero .r .ph img{position:absolute;inset:0;z-index:2;width:100%;height:100%;object-fit:cover;display:block}
+  .hero .r .zoom img{display:none}
   .hero .r .zoom{background:var(--ph2)}
   .hero .r .ph:nth-child(1){grid-area:1/1}.hero .r .ph:nth-child(2){grid-area:1/2}
   .hero .r .ph:nth-child(3){grid-area:2/2}.hero .r .ph:nth-child(4){grid-area:2/3}.hero .r .ph:nth-child(5){grid-area:2/4}
@@ -354,9 +356,9 @@
       <p class="hero-sub" data-copy="heroSub">Pomogę Ci ogarnąć imprezę.</p>
     </div>
     <div class="r">
-      <div class="ph" tabindex="0"><span>foto 1</span></div><div class="ph" tabindex="0"><span>foto 2</span></div><div class="ph" tabindex="0"><span>foto 3</span></div>
-      <div class="ph" tabindex="0"><span>foto 4</span></div><div class="ph" tabindex="0"><span>foto 5</span></div><div class="ph" tabindex="0"><span>foto 6</span></div><div class="ph" tabindex="0"><span>foto 7</span></div>
-      <div class="ph zoom" aria-hidden="true"><span id="zoom-label"></span></div>
+      <div class="ph" tabindex="0"><img src="assets/hero-1.webp" style="object-position:38% 28%" alt="Anka z żółtym krzesłem na fioletowym tle"><span>foto 1</span></div><div class="ph" tabindex="0"><span>foto 2</span></div><div class="ph" tabindex="0"><span>foto 3</span></div>
+      <div class="ph" tabindex="0"><img src="assets/hero-4.webp" style="object-position:48% 30%" alt="Anka w czerwonej plisowanej sukni przy czarnym krześle"><span>foto 4</span></div><div class="ph" tabindex="0"><span>foto 5</span></div><div class="ph" tabindex="0"><img src="assets/hero-6.webp" style="object-position:40% 38%" alt="Anka na białym krześle, twarz zasłonięta książką"><span>foto 6</span></div><div class="ph" tabindex="0"><span>foto 7</span></div>
+      <div class="ph zoom" aria-hidden="true"><img id="zoom-img" alt=""><span id="zoom-label"></span></div>
     </div>
   </div>
 </section>
@@ -669,10 +671,11 @@
 
 
   (function(){
-    var r=document.querySelector('.hero .r'),z=r.querySelector('.zoom'),lab=document.getElementById('zoom-label'),cells=[].slice.call(r.querySelectorAll('.ph:not(.zoom)')),cur=null;
+    var r=document.querySelector('.hero .r'),z=r.querySelector('.zoom'),lab=document.getElementById('zoom-label'),zimg=document.getElementById('zoom-img'),cells=[].slice.call(r.querySelectorAll('.ph:not(.zoom)')),cur=null;
     function inset(c){var a=r.getBoundingClientRect(),b=c.getBoundingClientRect();return 'inset('+(b.top-a.top)+'px '+(a.right-b.right)+'px '+(a.bottom-b.bottom)+'px '+(b.left-a.left)+'px round var(--radius))'}
     function show(c){
-      lab.textContent=c.textContent+' · powiększenie';
+      var im=c.querySelector('img');
+      if(im){zimg.src=im.src;zimg.style.objectPosition=im.style.objectPosition;zimg.style.display='block';lab.style.display='none'}else{zimg.style.display='none';lab.style.display='';lab.textContent=c.textContent+' · powiększenie'}
       if(!z.classList.contains('on')){
         z.style.transition='none';z.style.clipPath=inset(c);void z.offsetWidth;z.style.transition='';
         z.classList.add('on');z.style.clipPath='inset(0 round var(--radius))';
