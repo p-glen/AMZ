@@ -156,7 +156,7 @@
 
   /* ============ THREE WORLDS (back-to-back) ============ */
   .worlds-sec{justify-content:flex-start;padding:calc(var(--space) * .5) 0 0;overflow:hidden}
-  .w-stage{--wh:calc(var(--sec-h) - var(--space) * .5);--wt:250px;height:var(--wh);display:grid;grid-template-columns:repeat(3,1fr);position:relative}
+  .w-stage{--wh:calc(var(--sec-h) - var(--space) * .5);--wt:205px;height:var(--wh);display:grid;grid-template-columns:repeat(3,1fr);position:relative}
   .w-col{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
   .w-txt{height:var(--wt);display:flex;flex-direction:column;align-items:center;padding-top:8px}
   .w-h{position:relative;isolation:isolate;font-size:calc(clamp(24px,2.6vw,40px) * var(--h-scale));line-height:.95;text-transform:uppercase;max-width:none}
@@ -164,21 +164,13 @@
   .w-h i{display:block;font:400 .62em/1.05 Georgia,"Times New Roman",serif;font-style:normal;letter-spacing:-.03em}
   .w-txt p{max-width:26ch;font-size:14px;line-height:1.35;margin-top:12px}
   .w-go{width:52px;height:52px;display:grid;place-items:center;background:var(--pop);color:#14141a;border-radius:var(--radius);font-size:20px;margin-top:14px;transition:transform .2s}
-  .w-fig{position:absolute;bottom:0;height:calc(var(--wh) - var(--wt));aspect-ratio:.85;left:50%;margin-left:calc(var(--wh) * -.0);transform:translateX(-50%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
-  .w-fig .ph,.w-fig img{width:100%;height:100%;border-radius:var(--radius) var(--radius) 0 0}
-  .w-fig .ph{border-radius:46% 46% 0 0 / 30% 30% 0 0;border:var(--border-w) solid var(--bg);background:var(--ph)}
-  .w-col:nth-child(1) .w-fig .ph span,.w-col:nth-child(3) .w-fig .ph span{background:var(--ph)}
-  .w-col:nth-child(3) .w-fig .ph{background:var(--ph2)}.w-col:nth-child(3) .w-fig .ph span{background:var(--ph2)}
-  .w-fig img{object-fit:cover;object-position:50% 8%;display:block;background:#0b6b69}
-  .w-col:nth-child(1) .w-fig{transform:translateX(-44%)}
-  .w-col:nth-child(3) .w-fig{transform:translateX(-56%)}
-  .w-col:nth-child(2){z-index:2}
-  .w-col:hover .w-fig{transform:translateX(-50%) translateY(-12px)}
-  .w-col:nth-child(1):hover .w-fig{transform:translateX(-44%) translateY(-12px)}
-  .w-col:nth-child(3):hover .w-fig{transform:translateX(-56%) translateY(-12px)}
+  .w-fig{--h:calc((var(--wh) - var(--wt)) * var(--k,1));--w:calc(var(--h) * var(--ar,.75));position:absolute;bottom:0;height:var(--h);width:var(--w);left:calc(50% - var(--w) * var(--bc,.5) + var(--sx,0px))}
+  .w-fig::before{content:"";position:absolute;z-index:var(--az,0);bottom:0;top:calc(var(--h) * .14);left:calc(var(--bc,.5) * 100% - var(--h) * .34);width:calc(var(--h) * .68);border-radius:999px 999px 0 0;background:var(--arch,var(--ph))}
+  .w-fig img{position:absolute;z-index:var(--iz,2);left:0;bottom:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;display:block;filter:drop-shadow(0 12px 22px rgba(0,0,0,.28))}
+  .w-col:nth-child(1) .w-fig{--k:.88;--ar:.747;--bc:.646;--sx:calc(var(--h) * .44);--arch:var(--ph2)}
+  .w-col:nth-child(2) .w-fig{--k:1;--ar:.745;--bc:.522;--az:1;--iz:3;--arch:color-mix(in srgb,var(--pop) 62%,var(--bg))}
+  .w-col:nth-child(3) .w-fig{--k:.84;--ar:.887;--bc:.348;--sx:calc(var(--h) * -.44);--arch:var(--ph)}
   .w-col:hover .w-go{transform:translate(3px,-3px)}
-  .w-fig .ph{font-size:10px;text-align:center;padding:0 14px}
-  .w-fig .ph span{max-width:100%;line-height:1.4}
 
   /* ============ TILES ============ */
   .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px;grid-template-rows:repeat(2,1fr);height:max(360px,calc(var(--sec-h) - var(--space) * 2 - 130px))}
@@ -292,7 +284,7 @@
     .w-stage{height:auto;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter)}
     .w-col{flex:0 0 78%;scroll-snap-align:center;height:min(78svh,640px)}
     .w-stage{--wh:min(78svh,640px)}
-    .w-col:nth-child(n) .w-fig,.w-col:nth-child(n):hover .w-fig{transform:translateX(-50%)}
+    .w-col:nth-child(n) .w-fig{--k:1;--sx:0px}
     .sk-r{grid-template-columns:30px 1fr auto;gap:10px;padding:14px 12px}.sk-r .cat,.sk-th{display:none}
     .tiles{grid-template-columns:repeat(2,1fr);grid-template-rows:none;height:auto}.tile{aspect-ratio:1}
     .sk-head{grid-template-columns:1fr;gap:12px}
@@ -407,7 +399,7 @@
 <!-- 4 THREE WORLDS -->
 <section class="worlds-sec" id="swiaty">
   <span class="tag">04 · TRZY WEJŚCIA (back-to-back)</span>
-  <div class="note">Trzy Anny plecami do siebie (jak Aniołki Charliego), każda w innej stylizacji, jako trzy główne grupy odbiorców: Organizatorzy i kluby (patrzy w lewo, słuchawka + krótkofalówka/terminarz), Artyści i zespoły (patrzy prosto, na luzie), Marki i sponsorzy (patrzy w prawo, biznesowo, z telefonem). Tytuły jak „On/Off Track" u Lando (serif + bold), z dużym neonowym „&" w tle (jak „Collabs"). Opisy mają zbliżoną długość (59–62 znaki). Obecnie tylko środkowe zdjęcie jest prawdziwe (bez wycięcia tła); pozostałe to placeholdery. Hover wysuwa postać. Mobile: przesuwany pasek 3 kart.</div>
+  <div class="note">Trzy Anny plecami do siebie (jak Aniołki Charliego), każda w innej stylizacji, jako trzy główne grupy odbiorców: Organizatorzy i kluby (patrzy w lewo, słuchawka + krótkofalówka/terminarz), Artyści i zespoły (patrzy prosto, na luzie), Marki i sponsorzy (patrzy w prawo, biznesowo, z telefonem). Tytuły jak „On/Off Track" u Lando (serif + bold), z dużym neonowym „&" w tle (jak „Collabs"). Opisy mają zbliżoną długość (59–62 znaki). Zdjęcia są wycięte (przezroczyste PNG/WebP) i ułożone jak w kompozycji wzorcowej: po lewej Anka „eventowo” (słuchawka, notatnik), pośrodku „artystycznie” (kolorowy dres), po prawej „biznesowo” (błękitna koszula). Środkowa postać jest największa i na wierzchu; boczne są mniejsze i nachodzą pod nią. Za każdą jest łuk w kolorze motywu (głębia). Hover wysuwa postać. Mobile: przesuwany pasek 3 kart.</div>
   <div class="in">
     <div class="w-stage">
       <div class="w-col">
@@ -416,7 +408,7 @@
           <p data-copy="w1d">Od pomysłu i budżetu po produkcję, sprzedaż i program klubu.</p>
           <span class="w-go" aria-hidden="true">↗</span>
         </div>
-        <div class="w-fig"><div class="ph"><span>foto 1<br>profil w LEWO<br>słuchawka, krótkofalówka / terminarz<br>(wycięte, bez tła)</span></div></div>
+        <div class="w-fig"><img src="assets/anna-event.webp" alt="Anka w słuchawkach i z notatnikiem: organizacja wydarzeń" loading="lazy"></div>
       </div>
       <div class="w-col">
         <div class="w-txt">
@@ -424,7 +416,7 @@
           <p data-copy="w2d">Strategia koncertowa, trasy i pozycjonowanie na rynku live.</p>
           <span class="w-go" aria-hidden="true">↗</span>
         </div>
-        <div class="w-fig"><img src="assets/anna-front.webp" alt="Anna Maria Żurek, ujęcie na wprost" onerror="this.outerHTML='<div class=&quot;ph&quot;><span>foto 2<br>patrzy PROSTO<br>na luzie<br>(wycięte, bez tła)</span></div>'"></div>
+        <div class="w-fig"><img src="assets/anna-artist.webp" alt="Anka w kolorowym dresie, ręce założone: praca z artystami" loading="lazy"></div>
       </div>
       <div class="w-col">
         <div class="w-txt">
@@ -432,7 +424,7 @@
           <p data-copy="w3d">Oferta, dopasowanie marek, negocjacje i aktywacje sponsorskie.</p>
           <span class="w-go" aria-hidden="true">↗</span>
         </div>
-        <div class="w-fig"><div class="ph"><span>foto 3<br>profil w PRAWO<br>biznesowo, telefon<br>(wycięte, bez tła)</span></div></div>
+        <div class="w-fig"><img src="assets/anna-business.webp" alt="Anka w błękitnej koszuli, prezentuje: marki i sponsorzy" loading="lazy"></div>
       </div>
     </div>
   </div>
