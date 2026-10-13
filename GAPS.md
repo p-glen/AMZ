@@ -19,6 +19,10 @@
 
 - Zdjęcia na hover kafelków „Festiwale i trasy”: brakuje zdjęć dla JIMEK (Bemowo), Going. i kafelków zbiorczych (50 000+, 20+ lat); w pozostałych użyto zdjęć z Wikimedia Commons (atrybucja w assets/events/CREDITS.md, trzeba ją pokazać na stronie) oraz plakatów WWW (prawa do potwierdzenia).
 
+## Nagłówki
+- Podwójny nagłówek (pogrubiony + szeryfowy, `.h2s`) jest tylko dla sekcji powiązanych z trzema wejściami: „Festiwale / i trasy" (Organizatorzy i kluby), „Partnerzy / & kampanie" (Marki i sponsorzy). Brakuje trzeciej sekcji dla Artystów i zespołów (do zaprojektowania, razem z treścią i nagłówkiem w tym stylu).
+- Pozostałe sekcje („W czym pomagam", „Jak możemy działać?", „Baza wiedzy", „Pogadajmy") mają zwykły nagłówek `.h2p` (token `--fs-h2b`).
+
 ## Interakcje
 - „W czym pomagam": hover z dodatkowymi informacjami oraz klik (rozwinięcie) odłożone.
 - „Dowody doświadczenia" (mapa haseł, rozsypanka) pominięte.

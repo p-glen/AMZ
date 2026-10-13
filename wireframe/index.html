@@ -10,7 +10,7 @@
     --bg:#f3f2ef; --paper:#ffffff; --ink:#1b1b1b; --mute:#6f6f6a; --line:#cfcdc8;
     --accent:#1b1b1b; --on-accent:#ffffff; --accent-bg:var(--accent);
     --inv-bg:#1b1b1b; --inv-fg:#ffffff;
-    --radius:2px; --border-w:2px; --container:1280px; --gutter:32px; --space:72px; --h-scale:1;
+    --radius:2px; --border-w:2px; --container:1280px; --gutter:32px; --space:72px; --h-scale:1; --fs-hero:clamp(40px,5vw,76px); --fs-claim:clamp(34px,6vw,96px); --fs-h2:clamp(36px,5.2vw,84px); --fs-h2b:clamp(34px,4.6vw,68px); --fs-h3:22px;
     --stripe-h:0px;--pop:#d9ff1f;--amp-o:1;--tile-h:1.2;--tile-cols:3;--duo-lo:#1b1b1b;--duo-hi:linear-gradient(150deg,color-mix(in srgb,var(--pop) 38%,#fff) 0%,#f3f2ef 62%,#e4e2dc 100%);--fade-end:color-mix(in srgb,var(--paper) 88%,var(--bg));--fade-end2:color-mix(in srgb,var(--paper) 50%,var(--bg));
     --font-body:ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",sans-serif;
     --font-display:ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",sans-serif;
@@ -124,7 +124,7 @@
   .hero{scroll-snap-align:none;padding:0;border-bottom:0;flex:1;display:flex;align-items:center}
   .hero .in{width:100%}
   .hero .in{display:grid;grid-template-columns:1fr 1.5fr;gap:calc(var(--gutter)*1.5);align-items:center;padding-top:56px;padding-bottom:56px}
-  .hero h1{font-size:calc(clamp(40px,5vw,76px) * var(--h-scale));line-height:1}
+  .hero h1{font-size:calc(var(--fs-hero) * var(--h-scale));line-height:1}
   .hero-sub{margin-top:16px;font:600 calc(clamp(20px,2vw,30px) * var(--h-scale))/1.15 var(--font-display);letter-spacing:-.02em;color:color-mix(in srgb,var(--ink) 72%,transparent)}
   .hero .r{position:relative;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr);gap:12px;aspect-ratio:16/15;width:min(100%,calc(var(--avail) * 16 / 15));justify-self:end}
   .hero .r .ph{cursor:zoom-in;outline-offset:3px}
@@ -140,11 +140,14 @@
 
   /* ============ CLAIM ============ */
   .claim{text-align:center;background:linear-gradient(180deg,var(--fade-end) 0%,var(--paper) 100%);border-top:0}
-  .claim h2{font-size:calc(clamp(34px,6vw,96px) * var(--h-scale));line-height:.98;max-width:16ch;margin:0 auto}
+  .claim h2{font-size:calc(var(--fs-claim) * var(--h-scale));line-height:.98;max-width:16ch;margin:0 auto}
   [data-theme=pride] .claim h2{background:var(--accent-bg);-webkit-background-clip:text;background-clip:text;color:transparent}
   [data-theme=party] .claim h2{text-shadow:4px 4px 0 var(--accent)}
   .claim-sub{margin-top:28px;font:600 clamp(17px,1.6vw,24px)/1.2 var(--font-display);letter-spacing:-.015em;color:color-mix(in srgb,var(--ink) 68%,transparent)}
-  .h2s{font-size:calc(clamp(28px,4vw,56px) * var(--h-scale));max-width:14ch;line-height:1}
+  /* H2: jeden styl nagłówka sekcji (bold + serif w drugiej części) */
+  .h2s{font-size:calc(var(--fs-h2) * var(--h-scale));line-height:.9;text-transform:uppercase;max-width:none;margin:0}
+  .h2p{font-size:calc(var(--fs-h2b) * var(--h-scale));line-height:1;letter-spacing:-.035em;max-width:none;margin:0}
+  .h2s span{display:block;font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.04em}
 
   /* ============ HORIZONTAL TRACK ============ */
   .hz{padding:0;scroll-snap-align:start}
@@ -207,9 +210,10 @@
   /* ============ SKILLS / BRANDS / SOCIAL ============ */
   /* ============ SKILLS: lista z triggerem (fala) ============ */
   .skills-sec{justify-content:flex-start}
-  .sk-head{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:end;margin-bottom:28px}
-  .sk-head p{max-width:34ch;color:var(--mute)}
-  .sk-list{list-style:none;padding:0;border-top:1px solid var(--line)}
+  .sk-head{display:block;margin-bottom:0}
+  .sk-head p{margin:18px 0 0;max-width:42ch;font-size:clamp(16px,1.5vw,20px);line-height:1.35;color:var(--mute)}
+  .sk-list{list-style:none;padding:0;margin:0}
+  .sk-r:last-child{border-bottom-color:transparent}
   .sk-r{display:grid;grid-template-columns:44px 1fr auto auto auto;align-items:center;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);opacity:.5;position:relative;isolation:isolate;transition:color .25s,opacity .25s}
   .sk-r::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:0;bottom:0;border-radius:var(--radius);background:var(--accent-bg);opacity:0;transition:opacity .25s,top .3s cubic-bezier(.2,.8,.2,1),bottom .3s cubic-bezier(.2,.8,.2,1)}
   .sk-r .n{font:11px ui-monospace,monospace;color:inherit;opacity:.6}
@@ -231,14 +235,12 @@
   .how-c{display:flex;flex-direction:column;gap:12px;min-height:min(300px,40svh);padding:22px 20px;background:var(--paper);border:var(--border-w) solid var(--ink);border-radius:var(--radius);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
   .how-c:hover{transform:translateY(-6px)}
   .how-c .n{font:11px ui-monospace,monospace;color:var(--mute)}
-  .how-c h3{font-size:calc(22px * var(--h-scale));line-height:1.08;letter-spacing:-.025em}
+  .how-c h3{font-size:calc(var(--fs-h3) * var(--h-scale));line-height:1.08;letter-spacing:-.025em}
   .how-c p{margin-top:auto;font-size:14px;line-height:1.4;color:var(--mute)}
   /* ============ BRANDS (≈ Partners & Campaigns) ============ */
   .brands-sec{overflow:hidden;background:linear-gradient(180deg,var(--fade-end2) 0%,var(--paper) 100%)}
   .b-art{position:absolute;left:-3%;top:4%;z-index:0;pointer-events:none;font:italic 700 clamp(170px,25vw,400px)/1 "Snell Roundhand","Segoe Script","Brush Script MT",cursive;color:var(--pop);transform:rotate(-13deg);white-space:nowrap;user-select:none}
   .b-top{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center}
-  .b-h{font-size:calc(clamp(36px,5.2vw,84px) * var(--h-scale));line-height:.9;text-transform:uppercase;max-width:none}
-  .b-h span{display:block;font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.04em}
   .b-top p{max-width:38ch;font-size:16px;line-height:1.4}
   .b-marq{position:relative;z-index:1;margin-top:clamp(40px,11vh,120px);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
   .b-track{display:flex;width:max-content}
@@ -460,7 +462,7 @@
   <span class="tag">05 · FESTIWALE I TRASY</span>
   <div class="note">Układ 3 kolumny × 4 rzędy (liczbę kolumn zmienisz suwakiem „Kolumny kafelków” w panelu Design system, np. 4 = układ 4×3). Kafelki są lekko pionowe: wysokość = 1,2 × szerokość (pod klipy kwadratowe i z telefonu). Proporcję zmienisz suwakiem „Wysokość kafelka” w panelu Design system (np. 1,27 = pierwiastek ze złotej, 1,33 = 3:4). Kafelek: u góry nazwa i data, na środku duża wartość (zasięg), na dole przypis. Hover lub fokus → zdjęcie z wydarzenia (docelowo wideo 3–5 s; zdjęcia z Wikimedia Commons, autorzy w assets/events/CREDITS.md; wszystkie dostają wspólny filtr duotonowy z kolorów aktualnego motywu (--duo-lo / --duo-hi); JIMEK, Going. i kafelki zbiorcze czekają na zdjęcia). Liczby z dokumentu (JIMEK 50 000+, ~50 000 wydarzeń, 20+ lat, Going. 8 lat = 2015–2023). Wyszarzone [X] i [rok] to dane do uzupełnienia. Kafelki z dopiskiem „przykład” (Flying Lotus, Bicep, Glasper, Autechre) mają wartości wygenerowane na próbę; artyści i dni z plakatów World Wide Warsaw.</div>
   <div class="in">
-    <h2 class="h2s" data-copy="festivals" style="max-width:none">Festiwale i trasy</h2>
+    <h2 class="h2s"><b data-copy="festivals">Festiwale</b><span data-copy="festivals2">i trasy</span></h2>
     <div class="tiles">
       <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>Mata · trasa</span><span>2025</span></div><span class="t-val todo" title="Brak liczby w materiale: do uzupełnienia">[X]</span><span class="cap">rekordowa trasa Maty</span></div><div class="vid has-img"><img src="assets/events/mata.jpg" alt="Mata na scenie" loading="lazy" style="object-position:50% 30%"><span class="credit">Foto: Franek Vetulani · CC BY-SA 4.0</span></div></div>
       <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>JIMEK · Bemowo</span><span>[rok]</span></div><span class="t-val">50 000+</span><span class="cap">osób na jednym koncercie</span></div><div class="vid">zdjęcie: do dodania<br>(docelowo wideo 3–5 s)</div></div>
@@ -484,7 +486,7 @@
   <div class="note">Klon Lando: nagłówek + opis, duża grafika w tle (tu placeholder, zastąpi ją własna), pod spodem logo w pętli. Logo w jednolitej czerni (w ciemnych motywach białe), skalowane do podobnej powierzchni. Wszystkie logo mają 26 px wysokości. CCC, CEDC, Dr Witt i Oshee to tymczasowe napisy, do podmiany na oficjalne pliki. Hover zatrzymuje ruch. Wymaga zgody na użycie logotypów.</div>
   <div class="b-art" aria-hidden="true">Collabs</div>
   <div class="in b-top">
-    <h2 class="b-h"><b data-copy="brands1" style="font-weight:700">Partnerzy</b><span data-copy="brands2">&amp; kampanie</span></h2>
+    <h2 class="h2s"><b data-copy="brands1">Partnerzy</b><span data-copy="brands2">&amp; kampanie</span></h2>
     <p data-copy="brandsTxt">Od ponad 20 lat pracuję z markami. Aktywnie działam przy sponsoringu m.in. dla Festiwalu Rapstacja i klubu Warsaw Padel Club. Poniżej część z nich.</p>
   </div>
   <div class="b-marq" aria-label="Marki, z którymi współpracowała">
@@ -500,7 +502,7 @@
   <span class="tag">07 · W CZYM POMAGAM</span>
   <div class="note">Wróciła wcześniejsza wersja listy z falą: numer, nazwa + podpis, tag obszaru, miniatura w aktywnym wierszu i metryka po prawej. Teksty to 7 kompetencji z dokumentu; metryki z dokumentu tam, gdzie są ([metryka] = brak danych). Na środku ekranu jest „trigger” (linię widać przy Adnotacjach).</div>
   <div class="in sk-head">
-    <h2 class="h2s" data-copy="skills" style="max-width:none">W czym pomagam</h2>
+    <h2 class="h2p" data-copy="skills">W czym pomagam</h2>
     <p data-copy="skillsSub">Siedem obszarów, w których mogę wejść w Twoje buty.</p>
   </div>
   <div class="in">
@@ -522,7 +524,7 @@
   <span class="tag">BAZA WIEDZY (ukryta)</span>
   <div class="note">Tylko zapowiedź, bez rozbudowanego działu (tak zaleca dokument). Karuzela jak na Apple z tematami artykułów oznaczonymi „Wkrótce”. Gdy pojawią się materiały, karta może dostać adres, zdjęcie i datę.</div>
   <div class="in p-head">
-    <h2 class="h2s" data-copy="press" style="max-width:none">Baza wiedzy</h2>
+    <h2 class="h2p" data-copy="press">Baza wiedzy</h2>
     <p data-copy="pressSub">Praktyczne artykuły i materiały z branży wydarzeń. Wkrótce.</p>
   </div>
   <div class="p-rail" id="p-rail" tabindex="0" aria-label="Tematy bazy wiedzy"></div>
@@ -536,7 +538,7 @@
   <span class="tag">08 · JAK MOŻEMY DZIAŁAĆ</span>
   <div class="note">5 form współpracy z dokumentu, od jednej rozmowy po stałe wsparcie.</div>
   <div class="in">
-    <h2 class="h2s" data-copy="howTitle" style="max-width:none">Jak możemy działać?</h2>
+    <h2 class="h2p" data-copy="howTitle">Jak możemy działać?</h2>
     <div class="how-grid">
       <div class="how-c"><span class="n">01</span><h3>Jedna konkretna rozmowa</h3><p>Kiedy potrzebujesz oceny sytuacji, drugiej opinii albo planu działania.</p></div>
       <div class="how-c"><span class="n">02</span><h3>Rozwiązanie określonego problemu</h3><p>Analiza, rekomendacje i wsparcie we wdrożeniu.</p></div>
@@ -552,7 +554,7 @@
   <span class="tag">09 · KONTAKT (≈ noho "take a quiz")</span>
   <div class="note">Siatka: zdjęcie Anny w środku, po lewej Imię i E-mail, po prawej „Kim jesteś?” (lista z „Dla kogo?”) i „Czego szukasz?” (8 sytuacji z „Z czym do mnie przyjść?”), pod spodem przycisk na całą szerokość. Mobile: zdjęcie u góry (nie jest zasłaniane), pola w dwóch kolumnach pod nim.</div>
   <div class="in">
-    <h2 class="h2s" style="margin:0 auto" data-copy="contact">Pogadajmy</h2>
+    <h2 class="h2p" style="text-align:center" data-copy="contact">Pogadajmy</h2>
     <form class="q-grid" onsubmit="return false">
       <div class="q-f q-name"><span>Imię</span></div>
       <div class="q-f q-mail"><span>E-mail</span></div>
@@ -617,7 +619,7 @@
     ['hero','Hero – nagłówek'],['heroSub','Hero – podtytuł'],['claim','Claim'],['claimSub','Claim – podpis'],
     ['stripTxt1','Taśma – tekst 1'],['stripTxt2','Taśma – tekst 2'],
     ['w1s','Wejście 1 – linia serif'],['w1h','Wejście 1 – tytuł'],['w1d','Wejście 1 – opis'],['w2s','Wejście 2 – linia serif'],['w2h','Wejście 2 – tytuł'],['w2d','Wejście 2 – opis'],['w3s','Wejście 3 – linia serif'],['w3h','Wejście 3 – tytuł'],['w3d','Wejście 3 – opis'],
-    ['festivals','Festiwale – tytuł'],['skills','W czym pomagam – tytuł'],['skillsSub','W czym pomagam – podtytuł'],['brands1','Marki – tytuł (linia 1)'],['brands2','Marki – tytuł (linia 2)'],['brandsTxt','Marki – opis'],['howTitle','Jak działamy – tytuł'],
+    ['festivals','Festiwale – tytuł (linia 1)'],['festivals2','Festiwale – tytuł (linia 2)'],['skills','W czym pomagam – tytuł'],['skillsSub','W czym pomagam – podtytuł'],['brands1','Marki – tytuł (linia 1)'],['brands2','Marki – tytuł (linia 2)'],['brandsTxt','Marki – opis'],['howTitle','Jak działamy – tytuł'],
     ['press','Baza wiedzy – tytuł'],['pressSub','Baza wiedzy – podtytuł'],['contact','Kontakt – tytuł'],['contactBtn','Kontakt – przycisk'],['navName','Nawigacja – nazwa'],['dockCta','Nawigacja – przycisk']
   ];
 
@@ -762,7 +764,7 @@
       list.style.paddingTop='0px';list.style.paddingBottom='0px';
       var top=HDR(),half=(window.innerHeight-top)/2,sr=sec.getBoundingClientRect(),f=rows[0].getBoundingClientRect(),l=rows[rows.length-1].getBoundingClientRect();
       var fc=f.top-sr.top+f.height/2,lc=sr.bottom-(l.top+l.height/2);
-      list.style.paddingTop=Math.max(0,half-fc)+'px';list.style.paddingBottom=Math.max(0,half-lc)+'px';
+      list.style.paddingTop=Math.max(0,half-fc)+'px';list.style.paddingBottom='0px';
       upd();
     }
     function req(){if(!tick){tick=true;requestAnimationFrame(upd)}}
