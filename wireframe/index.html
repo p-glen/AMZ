@@ -165,21 +165,21 @@
 
   /* ============ THREE WORLDS (back-to-back) ============ */
   .worlds-sec{justify-content:flex-start;padding:calc(var(--space) * .5) 0 0;overflow:hidden}
-  .w-stage{--wh:calc(var(--sec-h) - var(--space) * .5);--wt:205px;height:var(--wh);display:grid;grid-template-columns:repeat(3,1fr);position:relative}
-  .w-col{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+  .w-stage{--wh:calc(var(--sec-h) - var(--space) * .5);--wt:205px;--A:calc(var(--wh) - var(--wt));height:var(--wh);display:grid;grid-template-columns:repeat(3,1fr);position:relative;isolation:isolate}
+  /* jedno zielonkawe koło za grupą, niezależne od zdjęć */
+  .w-stage::before{content:"";position:absolute;z-index:0;left:50%;bottom:calc(var(--A) * -.22);width:calc(var(--A) * 1.3);aspect-ratio:1;translate:-50% 0;border-radius:50%;background:color-mix(in srgb,var(--pop) 62%,var(--bg));pointer-events:none}
+  .w-col{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
   .w-txt{height:var(--wt);display:flex;flex-direction:column;align-items:center;padding-top:8px}
   .w-h{position:relative;isolation:isolate;font-size:calc(clamp(24px,2.6vw,40px) * var(--h-scale));line-height:.95;text-transform:uppercase;max-width:none}
   .w-h::before{content:"&";position:absolute;left:50%;top:50%;translate:-50% -52%;z-index:-1;pointer-events:none;font:italic 700 4.4em/1 "Snell Roundhand","Segoe Script","Brush Script MT",cursive;text-transform:none;color:var(--pop);opacity:var(--amp-o,1)}
   .w-h i{display:block;font:400 .62em/1.05 Georgia,"Times New Roman",serif;font-style:normal;letter-spacing:-.03em}
   .w-txt p{max-width:26ch;font-size:14px;line-height:1.35;margin-top:12px}
-  .w-go{width:52px;height:52px;display:grid;place-items:center;background:var(--pop);color:#14141a;border-radius:var(--radius);font-size:20px;margin-top:14px;transition:transform .2s}
-  .w-fig{--h:calc((var(--wh) - var(--wt)) * var(--k,1));--w:calc(var(--h) * var(--ar,.75));position:absolute;bottom:0;height:var(--h);width:var(--w);left:calc(50% - var(--w) * var(--bc,.5) + var(--sx,0px))}
-  .w-fig::before{content:"";position:absolute;z-index:var(--az,0);bottom:0;top:calc(var(--h) * .14);left:calc(var(--bc,.5) * 100% - var(--h) * .34);width:calc(var(--h) * .68);border-radius:999px 999px 0 0;background:var(--arch,var(--ph))}
+  .w-fig{--h:calc((var(--wh) - var(--wt)) * var(--k,1));--w:calc(var(--h) * var(--ar,.75));position:absolute;bottom:calc(var(--h) * var(--dy,0) * -1);height:var(--h);width:var(--w);left:calc(50% - var(--w) * var(--bc,.5) + var(--sx,0px));transform-origin:50% 100%;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
   .w-fig img{position:absolute;z-index:var(--iz,2);left:0;bottom:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;display:block;filter:drop-shadow(0 12px 22px rgba(0,0,0,.28))}
-  .w-col:nth-child(1) .w-fig{--k:.88;--ar:.747;--bc:.646;--sx:calc(var(--h) * .44);--arch:var(--ph2)}
-  .w-col:nth-child(2) .w-fig{--k:1;--ar:.745;--bc:.522;--az:1;--iz:3;--arch:color-mix(in srgb,var(--pop) 62%,var(--bg))}
-  .w-col:nth-child(3) .w-fig{--k:.84;--ar:.887;--bc:.348;--sx:calc(var(--h) * -.44);--arch:var(--ph)}
-  .w-col:hover .w-go{transform:translate(3px,-3px)}
+  /* plan od pasa w górę: figury wsunięte pod dolną krawędź (--dy = ułamek wysokości), środkowa z przodu, boczne tylko nieco mniejsze i z tyłu; --sx liczone od środka sceny */
+  .w-col:nth-child(1) .w-fig{--k:2.15;--dy:.516;--ar:.747;--bc:.5;--sx:calc(var(--A) * -.43)}
+  .w-col:nth-child(2) .w-fig{--k:2.75;--dy:.558;--ar:.747;--bc:.5;--iz:3}
+  .w-col:nth-child(3) .w-fig{--k:1.9;--dy:.45;--ar:.747;--bc:.5;--sx:calc(var(--A) * .46)}
 
   /* ============ TILES ============ */
   .tiles{display:grid;grid-template-columns:repeat(var(--tile-cols),1fr);gap:16px;margin-top:28px}
@@ -212,7 +212,7 @@
   .skills-sec{justify-content:flex-start}
   .sk-head{display:block;margin-bottom:0}
   .sk-head p{margin:18px 0 0;max-width:42ch;font-size:clamp(16px,1.5vw,20px);line-height:1.35;color:var(--mute)}
-  .sk-list{list-style:none;padding:0;margin:0}
+  .sk-list{list-style:none;padding:0;margin:clamp(24px,4vw,48px) 0 0}
   .sk-r:last-child{border-bottom-color:transparent}
   .sk-r{display:grid;grid-template-columns:44px 1fr auto auto auto;align-items:center;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);opacity:.5;position:relative;isolation:isolate;transition:color .25s,opacity .25s}
   .sk-r::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:0;bottom:0;border-radius:var(--radius);background:var(--accent-bg);opacity:0;transition:opacity .25s,top .3s cubic-bezier(.2,.8,.2,1),bottom .3s cubic-bezier(.2,.8,.2,1)}
@@ -310,7 +310,8 @@
     .w-stage{height:auto;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--gutter) * -1);padding:0 var(--gutter)}
     .w-col{flex:0 0 78%;scroll-snap-align:center;height:min(78svh,640px)}
     .w-stage{--wh:min(78svh,640px)}
-    .w-col:nth-child(n) .w-fig{--k:1;--sx:0px}
+    .w-col{position:relative}.w-stage::before{display:none}
+    .w-col:nth-child(n) .w-fig{--k:1;--dy:0;--sx:0px}
     .sk-r{grid-template-columns:30px 1fr auto;gap:10px;padding:14px 12px}.sk-r .cat,.sk-th{display:none}
     .tiles{grid-template-columns:repeat(2,1fr)}
     .sk-head{grid-template-columns:1fr;gap:12px}
@@ -331,7 +332,7 @@
 </style>
 </head>
 <body>
-<div id="loader" role="status" aria-live="polite">
+<div id="loader" hidden role="status" aria-live="polite">
   <div class="ld-top"><span>AMŻ</span><button class="ld-skip" id="ld-skip" type="button">Pomiń</button></div>
   <div class="ld-mid"><div class="ld-word"><i>Świat</i><b id="ld-w">Eventy</b></div></div>
   <div class="ld-bottom"><div class="ld-count"><span id="ld-n">0</span><i>%</i></div><div class="ld-bar"><i id="ld-bar"></i></div></div>
@@ -381,8 +382,8 @@
       <p class="hero-sub" data-copy="heroSub">Pomogę Ci ogarnąć imprezę.</p>
     </div>
     <div class="r">
-      <div class="ph" tabindex="0"><img src="assets/hero-1.webp" style="object-position:38% 28%" alt="Anka z żółtym krzesłem na fioletowym tle"><span>foto 1</span></div><div class="ph" tabindex="0"><span>foto 2</span></div><div class="ph" tabindex="0"><span>foto 3</span></div>
-      <div class="ph" tabindex="0"><img src="assets/hero-4.webp" style="object-position:48% 30%" alt="Anka w czerwonej plisowanej sukni przy czarnym krześle"><span>foto 4</span></div><div class="ph" tabindex="0"><span>foto 5</span></div><div class="ph" tabindex="0"><img src="assets/hero-6.webp" style="object-position:40% 38%" alt="Anka na białym krześle, twarz zasłonięta książką"><span>foto 6</span></div><div class="ph" tabindex="0"><span>foto 7</span></div>
+      <div class="ph" tabindex="0"><img src="assets/hero-1.webp" style="object-position:38% 28%" alt="Anka z żółtym krzesłem na fioletowym tle"><span>foto 1</span></div><div class="ph" tabindex="0"><img src="assets/hero-2.webp" style="object-position:52% 55%" alt="Stos żółtych krzeseł na oliwkowym tle"><span>foto 2</span></div><div class="ph" tabindex="0"><img src="assets/hero-3.webp" style="object-position:50% 56%" alt="Postać w trawiastym kostiumie pochylona nad białym krzesłem, żółte tło"><span>foto 3</span></div>
+      <div class="ph" tabindex="0"><img src="assets/hero-4.webp" style="object-position:48% 30%" alt="Anka w czerwonej plisowanej sukni przy czarnym krześle"><span>foto 4</span></div><div class="ph" tabindex="0"><img src="assets/hero-5.webp" style="object-position:40% 38%" alt="Anka na białym krześle, twarz zasłonięta książką"><span>foto 5</span></div><div class="ph" tabindex="0"><img src="assets/hero-legs.webp" style="object-position:50% 50%" alt="Nogi w dżinsach do góry nogami, czarne krzesło na beżowym tle"><span>foto 6</span></div><div class="ph" tabindex="0"><img src="assets/hero-7.webp" style="object-position:50% 42%" alt="Anka zasłonięta żółtym krzesłem na zielonym tle"><span>foto 7</span></div>
       <div class="ph zoom" aria-hidden="true"><img id="zoom-img" alt=""><span id="zoom-label"></span></div>
     </div>
   </div>
@@ -433,25 +434,25 @@
         <div class="w-txt">
           <h3 class="w-h"><i data-copy="w1s">Organizatorzy</i><b data-copy="w1h">Kluby</b></h3>
           <p data-copy="w1d">Od pomysłu i budżetu po produkcję, sprzedaż i program klubu.</p>
-          <span class="w-go" aria-hidden="true">↗</span>
+          
         </div>
-        <div class="w-fig"><img src="assets/anna-event.webp" alt="Anka w słuchawkach i z notatnikiem: organizacja wydarzeń" loading="lazy"></div>
+        <div class="w-fig"><img src="assets/anna-event-2.webp" alt="Anka w słuchawkach i z notatnikiem: organizacja wydarzeń" loading="lazy"></div>
       </div>
       <div class="w-col">
         <div class="w-txt">
           <h3 class="w-h"><i data-copy="w2s">Artyści</i><b data-copy="w2h">Zespoły</b></h3>
           <p data-copy="w2d">Strategia koncertowa, trasy i pozycjonowanie na rynku live.</p>
-          <span class="w-go" aria-hidden="true">↗</span>
+          
         </div>
-        <div class="w-fig"><img src="assets/anna-artist.webp" alt="Anka w kolorowym dresie, ręce założone: praca z artystami" loading="lazy"></div>
+        <div class="w-fig"><img src="assets/anna-artist-2.webp" alt="Anka w kolorowym dresie, ręce założone: praca z artystami" loading="lazy"></div>
       </div>
       <div class="w-col">
         <div class="w-txt">
           <h3 class="w-h"><i data-copy="w3s">Marki</i><b data-copy="w3h">Sponsorzy</b></h3>
           <p data-copy="w3d">Oferta, dopasowanie marek, negocjacje i aktywacje sponsorskie.</p>
-          <span class="w-go" aria-hidden="true">↗</span>
+          
         </div>
-        <div class="w-fig"><img src="assets/anna-business.webp" alt="Anka w błękitnej koszuli, prezentuje: marki i sponsorzy" loading="lazy"></div>
+        <div class="w-fig"><img src="assets/anna-business-2.webp" alt="Anka w błękitnej koszuli, prezentuje: marki i sponsorzy" loading="lazy"></div>
       </div>
     </div>
   </div>
@@ -764,7 +765,7 @@
       list.style.paddingTop='0px';list.style.paddingBottom='0px';
       var top=HDR(),half=(window.innerHeight-top)/2,sr=sec.getBoundingClientRect(),f=rows[0].getBoundingClientRect(),l=rows[rows.length-1].getBoundingClientRect();
       var fc=f.top-sr.top+f.height/2,lc=sr.bottom-(l.top+l.height/2);
-      list.style.paddingTop=Math.max(0,half-fc)+'px';list.style.paddingBottom='0px';
+      list.style.paddingTop='0px';list.style.paddingBottom='0px';
       upd();
     }
     function req(){if(!tick){tick=true;requestAnimationFrame(upd)}}
@@ -865,7 +866,8 @@
     }
     document.getElementById('ld-skip').onclick=exit;
     document.getElementById('btn-loader').onclick=run;
-    run();
+    /* loader nie startuje sam (przycisk „Loader ▶" w górnej belce uruchamia go na żądanie) */
+    ld.hidden=true;html.classList.remove('is-loading');html.classList.add('loaded');
   })();
   applyCopy();setTheme(THEMES.indexOf(state.theme)>-1?state.theme:'light');
 })();

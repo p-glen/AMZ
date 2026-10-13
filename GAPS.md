@@ -2,8 +2,9 @@
 
 ## Sekcja 04: Trzy wejścia
 - **Hover:** zamiast unoszenia postaci ma być efekt zoom i zmiana warstwy (z-index): najechana postać (Organizatorzy i kluby albo Marki i sponsorzy) wychodzi na przód. Odłożone na później. Unoszenie usunięte, bo dolne krawędzie zdjęć są przycięte.
-- **Zdjęcia:** dolne krawędzie są przycięte (event: talia, artystka: dół kurtki, biznes: talia). Dziś ukrywa je dolna krawędź sekcji. Jeśli będą potrzebne całe sylwetki, trzeba je dogenerować (np. outpainting).
-- **Rozdzielczość:** źródła mają 896×1200 px, więc na ekranach retina mogą być lekko miękkie.
+- **Zdjęcia:** trzy pełne postacie tej samej wysokości (artystka z nowego zdjęcia, „event" i „biznes" dokończone do stóp w Higgsfield, tło zdjęte modelem). Nogi i buty „event" i „biznes" są wygenerowane, do zastąpienia prawdziwą sesją.
+- **Identyfikator** na zdjęciu „Marki i sponsorzy" ma czytelne nazwisko innej osoby: do zamazania albo podmiany przed publikacją.
+- **Rozdzielczość:** dokończone postacie mają ok. 690×1024 px przed kadrowaniem (upscale 2K w Higgsfield zakończył się błędem), więc na retinie mogą być miękkie.
 
 ## Treść
 - Dane kontaktowe, social media i stopka (brak w dokumencie).
