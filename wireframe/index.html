@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AMŻ – wireframe v0.2</title>
+<title>Anna Maria Żurek</title>
 <style>
   /* ============ TOKENS ============ */
   :root{
@@ -11,14 +11,14 @@
     --accent:#1b1b1b; --on-accent:#ffffff; --accent-bg:var(--accent);
     --inv-bg:#1b1b1b; --inv-fg:#ffffff;
     --radius:2px; --border-w:2px; --container:1280px; --gutter:32px; --space:72px; --h-scale:1;
-    --stripe-h:0px;--pop:#d9ff1f;--amp-o:1;
+    --stripe-h:0px;--pop:#d9ff1f;--amp-o:1;--tile-h:1.2;--tile-cols:3;--duo-lo:#1b1b1b;--duo-hi:linear-gradient(150deg,color-mix(in srgb,var(--pop) 38%,#fff) 0%,#f3f2ef 62%,#e4e2dc 100%);--fade-end:color-mix(in srgb,var(--paper) 88%,var(--bg));--fade-end2:color-mix(in srgb,var(--paper) 50%,var(--bg));
     --font-body:ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",sans-serif;
     --font-display:ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",sans-serif;
     --ph:color-mix(in srgb,var(--ink) 9%,var(--bg));
     --ph2:color-mix(in srgb,var(--ink) 15%,var(--bg));
   }
   [data-theme=dark]{
-    --amp-o:.4;
+    --amp-o:.4;--duo-lo:#0d0d0d;--duo-hi:linear-gradient(150deg,color-mix(in srgb,var(--pop) 30%,#d6d6d2) 0%,#b9b9b4 100%);
     --bg:#121212; --paper:#1c1c1c; --ink:#ededed; --mute:#9a9a94; --line:#3a3a38;
     --accent:#ededed; --on-accent:#121212; --inv-bg:#ededed; --inv-fg:#121212;
   }
@@ -26,13 +26,13 @@
     --bg:#fffaf5; --paper:#ffffff; --ink:#1b1030; --mute:#6b5f7d; --line:#e4d9ee;
     --accent:#7a2cff; --on-accent:#1b1030;
     --accent-bg:linear-gradient(90deg,#e40303,#ff8c00,#ffed00,#008026,#004dff,#750787);
-    --inv-bg:#1b1030; --inv-fg:#ffffff; --radius:14px; --stripe-h:6px; --pop:#ffb703;
+    --inv-bg:#1b1030; --inv-fg:#ffffff; --radius:14px; --stripe-h:6px; --pop:#ffb703; --duo-lo:#1b1030; --duo-hi:linear-gradient(120deg,#ff6b6b,#ffd166 30%,#7bd88f 55%,#5aa9ff 78%,#b48cff);
   }
   [data-theme=party]{
     --bg:#14002e; --paper:#230050; --ink:#fdf6ff; --mute:#c9a8ff; --line:#5b2da8;
     --accent:#ff2fd0; --on-accent:#14002e;
     --accent-bg:linear-gradient(90deg,#ff2fd0,#ffe600,#00f0ff,#ff2fd0);
-    --inv-bg:#ffe600; --inv-fg:#14002e; --radius:22px; --border-w:3px; --stripe-h:8px; --pop:#00f0ff; --amp-o:.4;
+    --inv-bg:#ffe600; --inv-fg:#14002e; --radius:22px; --border-w:3px; --stripe-h:8px; --pop:#00f0ff; --amp-o:.4; --duo-lo:#14002e; --duo-hi:linear-gradient(135deg,#ff2fd0,#ffe600 55%,#00f0ff);
     --font-display:Impact,"Arial Black",sans-serif;
   }
 
@@ -47,11 +47,14 @@
   section{position:relative;padding:var(--space) 0;border-bottom:1px dashed var(--line)}
   section:not(.hz):not(.hero){min-height:var(--sec-h);display:flex;flex-direction:column;justify-content:center}
   section > .in{width:100%}
+  [hidden]{display:none!important}
   h1,h2,h3,.display{font-family:var(--font-display);font-weight:700;letter-spacing:-.03em}
   .mono{font:11px ui-monospace,monospace;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
   .tag{position:absolute;top:10px;left:10px;font:600 11px/1 ui-monospace,monospace;letter-spacing:.04em;background:var(--inv-bg);color:var(--inv-fg);padding:5px 8px;border-radius:3px;z-index:2}
   .note{display:none;position:absolute;top:10px;right:10px;max-width:340px;font:12px/1.4 ui-monospace,monospace;color:#d4451f;background:#fff3ee;border:1px solid #d4451f;padding:8px 10px;border-radius:3px;z-index:2}
   body.notes .note{display:block}
+  body.no-guides .tag,body.no-guides .note{display:none!important}
+  body.no-guides section{border-bottom-color:transparent}
   .ph{background:var(--ph);position:relative;display:grid;place-items:center;color:var(--mute);font:600 11px ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;overflow:hidden;border-radius:var(--radius)}
   .ph::before,.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - .5px),var(--line) 50%,transparent calc(50% + .5px))}
   .ph::after{transform:scaleX(-1)}
@@ -117,8 +120,8 @@
   @media(prefers-reduced-motion:reduce){.hero h1,.hero-sub,.hero .r > .ph{transition:none!important}}
 
   /* ============ HERO ============ */
-  .screen1{--avail:calc(var(--sec-h) - 110px);min-height:var(--sec-h);display:flex;flex-direction:column;scroll-snap-align:start}
-  .hero{scroll-snap-align:none;padding:0;border-bottom:1px dashed var(--line);flex:1;display:flex;align-items:center}
+  .screen1{background:linear-gradient(180deg,var(--bg) 0%,var(--bg) 30%,var(--fade-end) 100%);--avail:calc(var(--sec-h) - 110px);min-height:var(--sec-h);display:flex;flex-direction:column;scroll-snap-align:start}
+  .hero{scroll-snap-align:none;padding:0;border-bottom:0;flex:1;display:flex;align-items:center}
   .hero .in{width:100%}
   .hero .in{display:grid;grid-template-columns:1fr 1.5fr;gap:calc(var(--gutter)*1.5);align-items:center;padding-top:56px;padding-bottom:56px}
   .hero h1{font-size:calc(clamp(40px,5vw,76px) * var(--h-scale));line-height:1}
@@ -136,7 +139,7 @@
   .hero .r .ph:nth-child(6){grid-area:3/1}.hero .r .ph:nth-child(7){grid-area:3/2}
 
   /* ============ CLAIM ============ */
-  .claim{text-align:center}
+  .claim{text-align:center;background:linear-gradient(180deg,var(--fade-end) 0%,var(--paper) 100%);border-top:0}
   .claim h2{font-size:calc(clamp(34px,6vw,96px) * var(--h-scale));line-height:.98;max-width:16ch;margin:0 auto}
   [data-theme=pride] .claim h2{background:var(--accent-bg);-webkit-background-clip:text;background-clip:text;color:transparent}
   [data-theme=party] .claim h2{text-shadow:4px 4px 0 var(--accent)}
@@ -145,6 +148,7 @@
 
   /* ============ HORIZONTAL TRACK ============ */
   .hz{padding:0;scroll-snap-align:start}
+  #festiwale{background:linear-gradient(180deg,var(--bg) 0%,var(--bg) 20%,var(--fade-end2) 100%);border-bottom:0;padding:calc(var(--space) * 1.7) 0}
   .hz-pin{--u:calc((100svh - var(--top)) / 10);position:sticky;top:var(--top);height:calc(100svh - var(--top));overflow:hidden}
   .hz-track{position:relative;height:calc(var(--u) * 10);margin-top:0;width:calc(var(--tw) * var(--u));will-change:transform}
   .hz-i{position:absolute;left:calc(var(--l) * var(--u));top:calc(var(--t) * var(--u));width:calc(var(--w) * var(--u));height:calc(var(--h) * var(--u))}
@@ -175,12 +179,24 @@
   .w-col:hover .w-go{transform:translate(3px,-3px)}
 
   /* ============ TILES ============ */
-  .tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px;grid-template-rows:repeat(2,1fr);height:max(360px,calc(var(--sec-h) - var(--space) * 2 - 130px))}
-  .tile{background:var(--paper);border:var(--border-w) solid var(--ink);border-radius:var(--radius);position:relative;cursor:pointer;overflow:hidden;transition:transform .25s}
+  .tiles{display:grid;grid-template-columns:repeat(var(--tile-cols),1fr);gap:16px;margin-top:28px}
+  .tile{aspect-ratio:1 / var(--tile-h);background:var(--paper);border:0;box-shadow:0 1px 2px rgba(0,0,0,.05),0 12px 30px rgba(0,0,0,.06);border-radius:var(--radius);position:relative;cursor:pointer;overflow:hidden;transition:transform .25s}
   .tile .face{position:absolute;inset:0;padding:18px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .35s}
   .tile .face b{font:700 clamp(20px,2.2vw,30px)/1 var(--font-display);letter-spacing:-.03em}
+  .t-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;font:11px/1.3 ui-monospace,monospace;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+  .t-top span:last-child{text-align:right;white-space:nowrap}
+  .t-val{flex:1;display:grid;place-items:center;text-align:center;font:700 clamp(30px,3.4vw,52px)/1 var(--font-display);letter-spacing:-.04em}
+  .t-val.todo{opacity:.35}
   .tile .vid{position:absolute;inset:0;background:var(--accent-bg);color:var(--on-accent);display:grid;place-items:center;align-content:center;transform:translateY(100%);transition:transform .35s;font:12px ui-monospace,monospace;text-align:center;padding:12px}
   .tile .vid::before{content:"▶";display:block;font-size:30px;margin-bottom:8px}
+  .tile .vid.has-img{padding:0;display:block;background:var(--ph2)}
+  .tile .vid.has-img{isolation:isolate}
+  .tile .vid.has-img img{z-index:0;filter:grayscale(1) contrast(1.08) brightness(1.02)}
+  .tile .vid.has-img::before,.tile .vid.has-img::after{content:"";position:absolute;inset:0;margin:0;font-size:0;pointer-events:none;display:block}
+  .tile .vid.has-img::before{z-index:1;background:var(--duo-lo);mix-blend-mode:screen}
+  .tile .vid.has-img::after{z-index:2;background:var(--duo-hi);mix-blend-mode:multiply}
+  .tile .vid img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .tile .vid .credit{z-index:3;position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,.6));color:#fff;font:10px/1.3 ui-monospace,monospace;text-align:left;letter-spacing:.03em}
   .tile:hover .vid,.tile:focus-visible .vid{transform:none}
   .tile:hover .face,.tile:focus-visible .face{transform:translateY(-30%)}
   .cap{font:11px ui-monospace,monospace;color:var(--mute);text-transform:uppercase}
@@ -194,14 +210,16 @@
   .sk-head{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:end;margin-bottom:28px}
   .sk-head p{max-width:34ch;color:var(--mute)}
   .sk-list{list-style:none;padding:0;border-top:1px solid var(--line)}
-  .sk-r{display:grid;grid-template-columns:44px 1fr auto auto auto;align-items:center;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);border-radius:0;opacity:.5;transform-origin:0 50%;transition:transform .3s cubic-bezier(.2,.8,.2,1),background .25s,color .25s,opacity .25s,border-radius .25s}
+  .sk-r{display:grid;grid-template-columns:44px 1fr auto auto auto;align-items:center;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);opacity:.5;position:relative;isolation:isolate;transition:color .25s,opacity .25s}
+  .sk-r::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:0;bottom:0;border-radius:var(--radius);background:var(--accent-bg);opacity:0;transition:opacity .25s,top .3s cubic-bezier(.2,.8,.2,1),bottom .3s cubic-bezier(.2,.8,.2,1)}
   .sk-r .n{font:11px ui-monospace,monospace;color:inherit;opacity:.6}
   .sk-r .nm{display:block;font:700 clamp(20px,2.2vw,30px)/1.05 var(--font-display);letter-spacing:-.025em}
   .sk-r .cp{display:block;margin-top:6px;font-size:14px;line-height:1.35;opacity:.78;max-width:70ch}
   .sk-r .cat{font:10px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;border:1px solid currentColor;border-radius:99px;padding:2px 8px;opacity:.7;white-space:nowrap}
   .sk-r .mt{font:600 14px ui-monospace,monospace;white-space:nowrap;min-width:9ch;text-align:right}
   .sk-th{width:0;height:52px;overflow:hidden;transition:width .3s;margin-left:-16px}
-  .sk-r.on{opacity:1;background:var(--accent-bg);color:var(--on-accent);transform:scale(1.035);border-radius:var(--radius);border-bottom-color:transparent;position:relative;z-index:1}
+  .sk-r.on{opacity:1;color:var(--on-accent);border-bottom-color:transparent;z-index:1}
+  .sk-r.on::before{opacity:1;top:-10px;bottom:-10px}
   .sk-r.on .sk-th{width:78px;margin-left:0}
   .sk-th .ph{width:78px;height:52px;font-size:9px}
   .sk-guide{display:none;position:fixed;left:0;right:0;border-top:1px dashed #d4451f;z-index:35;pointer-events:none;font:10px ui-monospace,monospace;color:#d4451f}
@@ -216,7 +234,7 @@
   .how-c h3{font-size:calc(22px * var(--h-scale));line-height:1.08;letter-spacing:-.025em}
   .how-c p{margin-top:auto;font-size:14px;line-height:1.4;color:var(--mute)}
   /* ============ BRANDS (≈ Partners & Campaigns) ============ */
-  .brands-sec{overflow:hidden}
+  .brands-sec{overflow:hidden;background:linear-gradient(180deg,var(--fade-end2) 0%,var(--paper) 100%)}
   .b-art{position:absolute;left:-3%;top:4%;z-index:0;pointer-events:none;font:italic 700 clamp(170px,25vw,400px)/1 "Snell Roundhand","Segoe Script","Brush Script MT",cursive;color:var(--pop);transform:rotate(-13deg);white-space:nowrap;user-select:none}
   .b-top{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center}
   .b-h{font-size:calc(clamp(36px,5.2vw,84px) * var(--h-scale));line-height:.9;text-transform:uppercase;max-width:none}
@@ -292,7 +310,7 @@
     .w-stage{--wh:min(78svh,640px)}
     .w-col:nth-child(n) .w-fig{--k:1;--sx:0px}
     .sk-r{grid-template-columns:30px 1fr auto;gap:10px;padding:14px 12px}.sk-r .cat,.sk-th{display:none}
-    .tiles{grid-template-columns:repeat(2,1fr);grid-template-rows:none;height:auto}.tile{aspect-ratio:1}
+    .tiles{grid-template-columns:repeat(2,1fr)}
     .sk-head{grid-template-columns:1fr;gap:12px}
     .b-marq{--ls:.72}.b-top{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}.p-head{flex-direction:column;align-items:flex-start;gap:10px}
     .q-grid{height:auto;grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:10px}
@@ -319,10 +337,11 @@
 
 
 <div class="bar">
-  <b>WIREFRAME v0.2 · AMŻ</b>
-  <span class="dim">lo-fi · bez zdjęć i copy</span>
+  <b>AMŻ · wersja robocza</b>
+  <span class="dim">treści w uzupełnianiu</span>
   <span class="sp"></span>
   <button id="btn-loader">Loader ▶</button>
+  <button id="btn-guides" aria-pressed="true">Podział sekcji</button>
   <button id="btn-notes" aria-pressed="false">Adnotacje</button>
   <button id="btn-ds" aria-pressed="false">Design system</button>
 </div>
@@ -439,25 +458,46 @@
 <!-- 5 FESTIWALE I TRASY -->
 <section id="festiwale">
   <span class="tag">05 · FESTIWALE I TRASY</span>
-  <div class="note">Wróciła wcześniejsza wersja: kafelki z mocnym claimem. Hover lub fokus → wideo 3–5 s. Metryki są z dokumentu (np. JIMEK, 50 000+ osób; trasa Maty 2025; 2 koncerty na PGE Narodowym).</div>
+  <div class="note">Układ 3 kolumny × 4 rzędy (liczbę kolumn zmienisz suwakiem „Kolumny kafelków” w panelu Design system, np. 4 = układ 4×3). Kafelki są lekko pionowe: wysokość = 1,2 × szerokość (pod klipy kwadratowe i z telefonu). Proporcję zmienisz suwakiem „Wysokość kafelka” w panelu Design system (np. 1,27 = pierwiastek ze złotej, 1,33 = 3:4). Kafelek: u góry nazwa i data, na środku duża wartość (zasięg), na dole przypis. Hover lub fokus → zdjęcie z wydarzenia (docelowo wideo 3–5 s; zdjęcia z Wikimedia Commons, autorzy w assets/events/CREDITS.md; wszystkie dostają wspólny filtr duotonowy z kolorów aktualnego motywu (--duo-lo / --duo-hi); JIMEK, Going. i kafelki zbiorcze czekają na zdjęcia). Liczby z dokumentu (JIMEK 50 000+, ~50 000 wydarzeń, 20+ lat, Going. 8 lat = 2015–2023). Wyszarzone [X] i [rok] to dane do uzupełnienia. Kafelki z dopiskiem „przykład” (Flying Lotus, Bicep, Glasper, Autechre) mają wartości wygenerowane na próbę; artyści i dni z plakatów World Wide Warsaw.</div>
   <div class="in">
     <h2 class="h2s" data-copy="festivals" style="max-width:none">Festiwale i trasy</h2>
     <div class="tiles">
-      <div class="tile" tabindex="0"><div class="face"><span class="cap">Trasa 2025</span><b>Mata</b><span class="cap">rekordowa trasa</span></div><div class="vid">wideo 3–5 s<br>pętla, bez dźwięku</div></div>
-      <div class="tile" tabindex="0"><div class="face"><span class="cap">Bemowo</span><b>JIMEK</b><span class="cap">50 000+ osób</span></div><div class="vid">wideo 3–5 s<br>pętla, bez dźwięku</div></div>
-      <div class="tile" tabindex="0"><div class="face"><span class="cap">PGE Narodowy</span><b>2 koncerty</b><span class="cap">Mata</span></div><div class="vid">wideo 3–5 s<br>pętla, bez dźwięku</div></div>
-      <div class="tile" tabindex="0"><div class="face"><span class="cap">World Wide Warsaw</span><b>Cykl koncertów</b><span class="cap">zagraniczne gwiazdy</span></div><div class="vid">wideo 3–5 s<br>pętla, bez dźwięku</div></div>
-      <div class="tile" tabindex="0"><div class="face"><span class="cap">Żarcie Na Kółkach</span><b>Zloty food trucków</b><span class="cap">w całej Polsce</span></div><div class="vid">wideo 3–5 s<br>pętla, bez dźwięku</div></div>
-      <div class="tile" tabindex="0"><div class="face"><span class="cap">Going.</span><b>Bileteria</b><span class="cap">2015–2023</span></div><div class="vid">wideo 3–5 s<br>pętla, bez dźwięku</div></div>
-      <div class="tile" tabindex="0"><div class="face"><span class="cap">Szacunkowo</span><b>~50 000</b><span class="cap">wydarzeń</span></div><div class="vid">wideo 3–5 s<br>pętla, bez dźwięku</div></div>
-      <div class="tile" tabindex="0"><div class="face"><span class="cap">Staż</span><b>20+ lat</b><span class="cap">w branży wydarzeń</span></div><div class="vid">wideo 3–5 s<br>pętla, bez dźwięku</div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>Mata · trasa</span><span>2025</span></div><span class="t-val todo" title="Brak liczby w materiale: do uzupełnienia">[X]</span><span class="cap">rekordowa trasa Maty</span></div><div class="vid has-img"><img src="assets/events/mata.jpg" alt="Mata na scenie" loading="lazy" style="object-position:50% 30%"><span class="credit">Foto: Franek Vetulani · CC BY-SA 4.0</span></div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>JIMEK · Bemowo</span><span>[rok]</span></div><span class="t-val">50 000+</span><span class="cap">osób na jednym koncercie</span></div><div class="vid">zdjęcie: do dodania<br>(docelowo wideo 3–5 s)</div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>PGE Narodowy</span><span>[rok]</span></div><span class="t-val">2 koncerty</span><span class="cap">współpraca z managementem Maty</span></div><div class="vid has-img"><img src="assets/events/pge.jpg" alt="Stadion PGE Narodowy w Warszawie" loading="lazy" style="object-position:50% 50%"><span class="credit">Foto: Chicken4War · CC BY-SA 4.0</span></div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>World Wide Warsaw</span><span>[rok]</span></div><span class="t-val todo" title="Brak liczby w materiale: do uzupełnienia">[X]</span><span class="cap">koncertów zagranicznych gwiazd w cyklu</span></div><div class="vid has-img"><img src="assets/events/www.jpg" alt="Plakaty World Wide Warsaw" loading="lazy" style="object-position:50% 50%"><span class="credit">Plakat WWW</span></div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>Żarcie Na Kółkach</span><span>[rok]</span></div><span class="t-val todo" title="Brak liczby w materiale: do uzupełnienia">[X]</span><span class="cap">zlotów food trucków w całej Polsce</span></div><div class="vid has-img"><img src="assets/events/food.jpg" alt="Food truck w Warszawie" loading="lazy" style="object-position:50% 50%"><span class="credit">Foto: Janusz Jakubowski · CC BY 2.0</span></div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>Going.</span><span>2015–2023</span></div><span class="t-val">8 lat</span><span class="cap">współzałożycielka bileterii</span></div><div class="vid">zdjęcie: do dodania<br>(docelowo wideo 3–5 s)</div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>Flying Lotus</span><span>[data]</span></div><span class="t-val" title="Wartość przykładowa, do podmiany">3 200</span><span class="cap">biletów · [miejsce] · przykład</span></div><div class="vid has-img"><img src="assets/events/flying-lotus.jpg" alt="Flying Lotus na festiwalu" loading="lazy" style="object-position:45% 50%"><span class="credit">Foto: Chris · CC BY 2.0</span></div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>Bicep + Ross From Friends</span><span>24.11</span></div><span class="t-val" title="Wartość przykładowa, do podmiany">1 400</span><span class="cap">biletów · Kino Luna · przykład</span></div><div class="vid has-img"><img src="assets/events/bicep.jpg" alt="Plakat Bicep + Ross From Friends" loading="lazy" style="object-position:28% 50%"><span class="credit">Plakat WWW Before Parties</span></div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>Robert Glasper Trio</span><span>26.11</span></div><span class="t-val" title="Wartość przykładowa, do podmiany">1 100</span><span class="cap">biletów · Teatr Warszawy · przykład</span></div><div class="vid has-img"><img src="assets/events/glasper.jpg" alt="Robert Glasper na koncercie" loading="lazy" style="object-position:50% 40%"><span class="credit">Foto: Andreas Lawen · CC BY-SA 4.0</span></div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>Autechre</span><span>10.11</span></div><span class="t-val" title="Wartość przykładowa, do podmiany">900</span><span class="cap">biletów · Teatr Powszechny · przykład</span></div><div class="vid has-img"><img src="assets/events/autechre.jpg" alt="Autechre przy konsolecie" loading="lazy" style="object-position:50% 50%"><span class="credit">Foto: Pablo Sanz Almoguera · CC BY-SA 2.0</span></div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>Wszystkie projekty</span><span>20+ lat</span></div><span class="t-val">50 000+</span><span class="cap">wydarzeń (lekko szacując)</span></div><div class="vid">zdjęcie: do dodania<br>(docelowo wideo 3–5 s)</div></div>
+      <div class="tile" tabindex="0"><div class="face"><div class="t-top"><span>Staż w branży</span><span></span></div><span class="t-val">20+ lat</span><span class="cap">wydarzeń na żywo w Polsce</span></div><div class="vid">zdjęcie: do dodania<br>(docelowo wideo 3–5 s)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 BRANDS -->
+<section class="brands-sec" id="marki">
+  <span class="tag">06 · MARKI (≈ Partners &amp; Campaigns)</span>
+  <div class="note">Klon Lando: nagłówek + opis, duża grafika w tle (tu placeholder, zastąpi ją własna), pod spodem logo w pętli. Logo w jednolitej czerni (w ciemnych motywach białe), skalowane do podobnej powierzchni. Wszystkie logo mają 26 px wysokości. CCC, CEDC, Dr Witt i Oshee to tymczasowe napisy, do podmiany na oficjalne pliki. Hover zatrzymuje ruch. Wymaga zgody na użycie logotypów.</div>
+  <div class="b-art" aria-hidden="true">Collabs</div>
+  <div class="in b-top">
+    <h2 class="b-h"><b data-copy="brands1" style="font-weight:700">Partnerzy</b><span data-copy="brands2">&amp; kampanie</span></h2>
+    <p data-copy="brandsTxt">Od ponad 20 lat pracuję z markami. Aktywnie działam przy sponsoringu m.in. dla Festiwalu Rapstacja i klubu Warsaw Padel Club. Poniżej część z nich.</p>
+  </div>
+  <div class="b-marq" aria-label="Marki, z którymi współpracowała">
+    <div class="b-track">
+      <div class="b-logo"><img src="assets/brands/superbet.svg" alt="Superbet"></div><div class="b-logo"><img src="assets/brands/visa.svg" alt="VISA"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CCC</span></div><div class="b-logo"><img src="assets/brands/converse.svg" alt="Converse"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Dr Witt</span></div><div class="b-logo"><img src="assets/brands/oysho.svg" alt="OYSHO"></div><div class="b-logo"><img src="assets/brands/pernod-ricard.svg" alt="Pernod Ricard"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CEDC</span></div><div class="b-logo"><img src="assets/brands/glo.svg" alt="glo"></div><div class="b-logo"><img src="assets/brands/plus.svg" alt="Plus"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Oshee</span></div><div class="b-logo"><img src="assets/brands/decathlon.svg" alt="Decathlon"></div><div class="b-logo"><img src="assets/brands/perla.svg" alt="Perła"></div><div class="b-logo"><img src="assets/brands/t-mobile.svg" alt="T-Mobile"></div>
+      <div style="display:contents" aria-hidden="true"><div class="b-logo"><img src="assets/brands/superbet.svg" alt=""></div><div class="b-logo"><img src="assets/brands/visa.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CCC</span></div><div class="b-logo"><img src="assets/brands/converse.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Dr Witt</span></div><div class="b-logo"><img src="assets/brands/oysho.svg" alt=""></div><div class="b-logo"><img src="assets/brands/pernod-ricard.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CEDC</span></div><div class="b-logo"><img src="assets/brands/glo.svg" alt=""></div><div class="b-logo"><img src="assets/brands/plus.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Oshee</span></div><div class="b-logo"><img src="assets/brands/decathlon.svg" alt=""></div><div class="b-logo"><img src="assets/brands/perla.svg" alt=""></div><div class="b-logo"><img src="assets/brands/t-mobile.svg" alt=""></div></div>
     </div>
   </div>
 </section>
 
 <!-- 6 W CZYM POMAGAM -->
 <section class="skills-sec" id="skills">
-  <span class="tag">06 · W CZYM POMAGAM</span>
+  <span class="tag">07 · W CZYM POMAGAM</span>
   <div class="note">Wróciła wcześniejsza wersja listy z falą: numer, nazwa + podpis, tag obszaru, miniatura w aktywnym wierszu i metryka po prawej. Teksty to 7 kompetencji z dokumentu; metryki z dokumentu tam, gdzie są ([metryka] = brak danych). Na środku ekranu jest „trigger” (linię widać przy Adnotacjach).</div>
   <div class="in sk-head">
     <h2 class="h2s" data-copy="skills" style="max-width:none">W czym pomagam</h2>
@@ -477,26 +517,9 @@
   <div class="sk-guide" id="sk-guide"><span>trigger · środek ekranu</span></div>
 </section>
 
-<!-- 7 BRANDS -->
-<section class="brands-sec" id="marki">
-  <span class="tag">07 · MARKI (≈ Partners &amp; Campaigns)</span>
-  <div class="note">Klon Lando: nagłówek + opis, duża grafika w tle (tu placeholder, zastąpi ją własna), pod spodem logo w pętli. Logo w jednolitej czerni (w ciemnych motywach białe), skalowane do podobnej powierzchni. Wszystkie logo mają 26 px wysokości. CCC, CEDC, Dr Witt i Oshee to tymczasowe napisy, do podmiany na oficjalne pliki. Hover zatrzymuje ruch. Wymaga zgody na użycie logotypów.</div>
-  <div class="b-art" aria-hidden="true">Collabs</div>
-  <div class="in b-top">
-    <h2 class="b-h"><b data-copy="brands1" style="font-weight:700">Partnerzy</b><span data-copy="brands2">&amp; kampanie</span></h2>
-    <p data-copy="brandsTxt">Od ponad 20 lat pracuję z markami. Aktywnie działam przy sponsoringu m.in. dla Festiwalu Rapstacja i klubu Warsaw Padel Club. Poniżej część z nich.</p>
-  </div>
-  <div class="b-marq" aria-label="Marki, z którymi współpracowała">
-    <div class="b-track">
-      <div class="b-logo"><img src="assets/brands/superbet.svg" alt="Superbet"></div><div class="b-logo"><img src="assets/brands/visa.svg" alt="VISA"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CCC</span></div><div class="b-logo"><img src="assets/brands/converse.svg" alt="Converse"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Dr Witt</span></div><div class="b-logo"><img src="assets/brands/oysho.svg" alt="OYSHO"></div><div class="b-logo"><img src="assets/brands/pernod-ricard.svg" alt="Pernod Ricard"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CEDC</span></div><div class="b-logo"><img src="assets/brands/glo.svg" alt="glo"></div><div class="b-logo"><img src="assets/brands/plus.svg" alt="Plus"></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Oshee</span></div><div class="b-logo"><img src="assets/brands/decathlon.svg" alt="Decathlon"></div><div class="b-logo"><img src="assets/brands/perla.svg" alt="Perła"></div><div class="b-logo"><img src="assets/brands/t-mobile.svg" alt="T-Mobile"></div>
-      <div style="display:contents" aria-hidden="true"><div class="b-logo"><img src="assets/brands/superbet.svg" alt=""></div><div class="b-logo"><img src="assets/brands/visa.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CCC</span></div><div class="b-logo"><img src="assets/brands/converse.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Dr Witt</span></div><div class="b-logo"><img src="assets/brands/oysho.svg" alt=""></div><div class="b-logo"><img src="assets/brands/pernod-ricard.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">CEDC</span></div><div class="b-logo"><img src="assets/brands/glo.svg" alt=""></div><div class="b-logo"><img src="assets/brands/plus.svg" alt=""></div><div class="b-logo" title="Tymczasowy napis: do podmiany na oficjalne logo"><span class="b-txt">Oshee</span></div><div class="b-logo"><img src="assets/brands/decathlon.svg" alt=""></div><div class="b-logo"><img src="assets/brands/perla.svg" alt=""></div><div class="b-logo"><img src="assets/brands/t-mobile.svg" alt=""></div></div>
-    </div>
-  </div>
-</section>
-
 <!-- 9 BAZA WIEDZY -->
-<section class="press-sec" id="wiedza">
-  <span class="tag">08 · BAZA WIEDZY (zapowiedź)</span>
+<section class="press-sec" id="wiedza" hidden>
+  <span class="tag">BAZA WIEDZY (ukryta)</span>
   <div class="note">Tylko zapowiedź, bez rozbudowanego działu (tak zaleca dokument). Karuzela jak na Apple z tematami artykułów oznaczonymi „Wkrótce”. Gdy pojawią się materiały, karta może dostać adres, zdjęcie i datę.</div>
   <div class="in p-head">
     <h2 class="h2s" data-copy="press" style="max-width:none">Baza wiedzy</h2>
@@ -510,7 +533,7 @@
 
 <!-- 9 JAK MOŻEMY DZIAŁAĆ -->
 <section id="jak">
-  <span class="tag">09 · JAK MOŻEMY DZIAŁAĆ</span>
+  <span class="tag">08 · JAK MOŻEMY DZIAŁAĆ</span>
   <div class="note">5 form współpracy z dokumentu, od jednej rozmowy po stałe wsparcie.</div>
   <div class="in">
     <h2 class="h2s" data-copy="howTitle" style="max-width:none">Jak możemy działać?</h2>
@@ -526,7 +549,7 @@
 
 <!-- 10 KONTAKT -->
 <section class="quiz" id="kontakt">
-  <span class="tag">10 · KONTAKT (≈ noho "take a quiz")</span>
+  <span class="tag">09 · KONTAKT (≈ noho "take a quiz")</span>
   <div class="note">Siatka: zdjęcie Anny w środku, po lewej Imię i E-mail, po prawej „Kim jesteś?” (lista z „Dla kogo?”) i „Czego szukasz?” (8 sytuacji z „Z czym do mnie przyjść?”), pod spodem przycisk na całą szerokość. Mobile: zdjęcie u góry (nie jest zasłaniane), pola w dwóch kolumnach pod nim.</div>
   <div class="in">
     <h2 class="h2s" style="margin:0 auto" data-copy="contact">Pogadajmy</h2>
@@ -542,7 +565,7 @@
 </section>
 
 <footer>
-  <span class="tag">11 · FOOTER</span>
+  <span class="tag">10 · FOOTER</span>
   <div class="in">
     <div><div class="display" style="font-size:22px;margin-bottom:16px">AMŻ</div><div class="txt" style="width:60%"></div></div>
     <div><p class="mono" style="margin-bottom:10px">Nawigacja</p><div class="txt"></div></div>
@@ -586,7 +609,9 @@
     {k:'--h-scale',l:'Skala nagłówków',t:'range',min:.6,max:1.5,step:.05,u:''},
     {g:'Układ',k:'--container',l:'Szerokość kontenera',t:'range',min:900,max:1800,step:20,u:'px'},
     {k:'--gutter',l:'Margines boczny',t:'range',min:12,max:96,step:2,u:'px'},
-    {k:'--space',l:'Odstęp między sekcjami',t:'range',min:24,max:180,step:4,u:'px'}
+    {k:'--space',l:'Odstęp między sekcjami',t:'range',min:24,max:180,step:4,u:'px'},
+    {k:'--tile-h',l:'Wysokość kafelka festiwali (× szerokość)',t:'range',min:1,max:1.6,step:.01,u:''},
+    {k:'--tile-cols',l:'Kolumny kafelków festiwali',t:'range',min:2,max:6,step:1,u:''}
   ];
   var COPY=[
     ['hero','Hero – nagłówek'],['heroSub','Hero – podtytuł'],['claim','Claim'],['claimSub','Claim – podpis'],
@@ -668,6 +693,10 @@
 
   document.querySelectorAll('[data-theme-btn]').forEach(function(b){b.onclick=function(){setTheme(b.dataset.themeBtn)}});
   var bn=document.getElementById('btn-notes'),bd=document.getElementById('btn-ds'),ds=document.getElementById('ds');
+  var bgd=document.getElementById('btn-guides');
+  function setGuides(on){document.body.classList.toggle('no-guides',!on);bgd.setAttribute('aria-pressed',on);try{localStorage.setItem('amz-guides',on?'1':'0')}catch(e){}}
+  bgd.onclick=function(){setGuides(document.body.classList.contains('no-guides'))};
+  try{if(localStorage.getItem('amz-guides')==='0')setGuides(false)}catch(e){}
   bn.onclick=function(){bn.setAttribute('aria-pressed',document.body.classList.toggle('notes'))};
   function toggleDs(on){bd.setAttribute('aria-pressed',document.body.classList.toggle('ds',on));ds.setAttribute('aria-hidden',!document.body.classList.contains('ds'))}
   bd.onclick=function(){toggleDs()};

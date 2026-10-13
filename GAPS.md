@@ -8,10 +8,16 @@
 ## Treść
 - Dane kontaktowe, social media i stopka (brak w dokumencie).
 - Adres docelowy formularza i polityka prywatności (RODO).
-- Logotypy marek (wymagają zgód); pas z logo ma numerowane placeholdery 1–8.
+- Logotypy marek (wymagają zgód). W pasie z logo CCC, CEDC, Dr Witt i Oshee to tymczasowe napisy do podmiany na oficjalne pliki; glo nie ma poziomego wariantu.
 - Taśma: „Kolejny projekt, do uzgodnienia". W „W czym pomagam" brak metryki dla klubów (`[metryka]`).
 - LEBOLBAT: na razie nie pojawia się. Do decyzji: historia nazwy i hak na końcu strony.
-- Baza wiedzy: tylko zapowiedź. Gdy będą artykuły, karty dostaną adresy, zdjęcia i daty (z `og:image` i `og:title`).
+- Baza wiedzy: sekcja ukryta (atrybut `hidden` na `#wiedza` w index.html; usuń go, żeby ją przywrócić). Tylko zapowiedź. Gdy będą artykuły, karty dostaną adresy, zdjęcia i daty (z `og:image` i `og:title`).
+
+- Kafelki „Festiwale i trasy”: brakuje liczb (zasięg) dla trasy Maty, World Wide Warsaw i Żarcie Na Kółkach oraz lat dla JIMEK, PGE Narodowy i tych projektów (w kafelkach `[X]` i `[rok]`).
+
+- Kafelki Flying Lotus, Bicep + Ross From Friends, Robert Glasper Trio i Autechre mają wygenerowane, przykładowe liczby biletów (oznaczone „przykład”). Do podmiany na prawdziwe dane albo usunięcia przed publikacją; daty i miejsca pochodzą z plakatów WWW.
+
+- Zdjęcia na hover kafelków „Festiwale i trasy”: brakuje zdjęć dla JIMEK (Bemowo), Going. i kafelków zbiorczych (50 000+, 20+ lat); w pozostałych użyto zdjęć z Wikimedia Commons (atrybucja w assets/events/CREDITS.md, trzeba ją pokazać na stronie) oraz plakatów WWW (prawa do potwierdzenia).
 
 ## Interakcje
 - „W czym pomagam": hover z dodatkowymi informacjami oraz klik (rozwinięcie) odłożone.
