@@ -8,7 +8,7 @@
 
 ## Treść
 - Dane kontaktowe, social media i stopka (brak w dokumencie).
-- Adres docelowy formularza i polityka prywatności (RODO).
+- Kontakt: sekcja ma układ 2 kolumn (zdjęcie Anki + kalendarz). Do wklejenia link do kalendarza w `data-embed` bloku `#q-cal` w index.html (Calendesk lub Calendly; sprawdzić, czy pozwala na osadzenie w iframe) i zdjęcie Anki. Brak polityki prywatności (RODO) i danych kontaktowych w stopce.
 - Logotypy marek (wymagają zgód). W pasie z logo CCC, CEDC, Dr Witt i Oshee to tymczasowe napisy do podmiany na oficjalne pliki; glo nie ma poziomego wariantu.
 - Taśma: „Kolejny projekt, do uzgodnienia". W „W czym pomagam" brak metryki dla klubów (`[metryka]`).
 - LEBOLBAT: na razie nie pojawia się. Do decyzji: historia nazwy i hak na końcu strony.
