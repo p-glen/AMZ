@@ -215,18 +215,30 @@
   .sk-head p{margin:18px 0 0;max-width:42ch;font-size:clamp(16px,1.5vw,20px);line-height:1.35;color:var(--mute)}
   .sk-list{list-style:none;padding:0;margin:clamp(24px,4vw,48px) 0 0}
   .sk-r:last-child{border-bottom-color:transparent}
-  .sk-r{display:grid;grid-template-columns:44px 1fr auto auto auto;align-items:center;gap:16px;padding:18px 22px;border-bottom:1px solid var(--line);position:relative;isolation:isolate;transition:color .25s;opacity:calc(1 - var(--d,1) * .82);will-change:opacity}
+  .sk-r{display:block;border-bottom:1px solid var(--line);position:relative;isolation:isolate;transition:color .25s;opacity:calc(1 - var(--d,1) * .82);will-change:opacity}
+  .sk-h{display:grid;grid-template-columns:44px 1fr auto auto;align-items:center;gap:16px;width:100%;padding:18px 22px;background:none;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer}
+  .sk-h:focus-visible{outline:2px solid var(--ink);outline-offset:-2px;border-radius:var(--radius)}
+  .sk-x{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.8,.2,1)}
+  .sk-x-c{overflow:hidden;min-height:0}
+  .sk-r.open .sk-x{grid-template-rows:1fr}
+  .sk-x-in{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:28px;padding:6px 22px 26px 60px;align-items:start}
+  .sk-x-ph{aspect-ratio:4/3;width:100%;background:color-mix(in srgb,currentColor 14%,transparent);color:inherit}
+  .sk-x-lead{font:600 clamp(17px,1.6vw,21px)/1.3 var(--font-display);letter-spacing:-.01em;max-width:46ch}
+  .sk-x-sit{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:6px;font-size:14px;line-height:1.35;opacity:.85}
+  .sk-x-sit li{padding-left:16px;position:relative}.sk-x-sit li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.6}
+  .sk-x-act{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:20px}
+  .sk-x-cta{display:inline-flex;align-items:center;height:42px;padding:0 18px;border-radius:99px;background:var(--pop);color:#14141a;font-weight:600;font-size:14px;text-decoration:none;white-space:nowrap}
+  .sk-x-link{font-size:14px;color:inherit;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+  .sk-r.open{opacity:1}
+  .sk-r.open .cp{display:none}
   .sk-r::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:0;bottom:0;border-radius:var(--radius);background:var(--accent-bg);opacity:0;transition:opacity .25s,top .3s cubic-bezier(.2,.8,.2,1),bottom .3s cubic-bezier(.2,.8,.2,1)}
   .sk-r .n{font:11px ui-monospace,monospace;color:inherit;opacity:.6}
   .sk-r .nm{display:block;font:700 clamp(20px,2.2vw,30px)/1.05 var(--font-display);letter-spacing:-.025em}
   .sk-r .cp{display:block;margin-top:6px;font-size:14px;line-height:1.35;opacity:.78;max-width:70ch}
   .sk-r .cat{font:10px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.08em;border:1px solid currentColor;border-radius:99px;padding:2px 8px;opacity:.7;white-space:nowrap}
   .sk-r .mt{font:600 14px ui-monospace,monospace;white-space:nowrap;min-width:9ch;text-align:right}
-  .sk-th{width:0;height:52px;overflow:hidden;transition:width .3s;margin-left:-16px}
   .sk-r.on{opacity:1;color:var(--on-accent);border-bottom-color:transparent;z-index:1}
   .sk-r.on::before{opacity:1;top:-10px;bottom:-10px}
-  .sk-r.on .sk-th{width:78px;margin-left:0}
-  .sk-th .ph{width:78px;height:52px;font-size:9px}
   .sk-guide{display:none;position:fixed;left:0;right:0;border-top:1px dashed #d4451f;z-index:35;pointer-events:none;font:10px ui-monospace,monospace;color:#d4451f}
   .sk-guide span{background:#fff3ee;padding:1px 6px}
   body.notes .sk-guide.vis{display:block}
@@ -313,7 +325,7 @@
     .w-stage{--wh:min(78svh,640px)}
     .w-col{position:relative}.w-stage::before{display:none}
     .w-col:nth-child(n) .w-fig{--k:1;--dy:0;--sx:0px}
-    .sk-r{grid-template-columns:30px 1fr auto;gap:10px;padding:14px 12px}.sk-r .cat,.sk-th{display:none}
+    .sk-h{grid-template-columns:30px 1fr auto;gap:10px;padding:14px 12px}.sk-r .cat{display:none}.sk-x-in{grid-template-columns:1fr;padding:4px 12px 20px 12px;gap:16px}.sk-x-ph{max-width:320px}
     .tiles{grid-template-columns:repeat(2,1fr)}
     .sk-head{grid-template-columns:1fr;gap:12px}
     .b-marq{--ls:.72}.b-top{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}.p-head{flex-direction:column;align-items:flex-start;gap:10px}
@@ -355,8 +367,10 @@
       <div class="mode" id="mode" role="group" aria-label="Tryb strony">
         <button class="md" data-theme-btn="light" data-tip="Jasny" aria-label="Tryb jasny"><svg class="ic"><use href="#i-sun"/></svg></button>
         <button class="md" data-theme-btn="dark" data-tip="Ciemny" aria-label="Tryb ciemny"><svg class="ic"><use href="#i-moon"/></svg></button>
+        <!-- wyłączone na razie: tryby Pride i Party (style zostają w CSS). Żeby je przywrócić: odkomentuj przyciski i dopisz 'pride','party' do THEMES w skrypcie.
         <button class="md" data-theme-btn="pride" data-tip="Pride" aria-label="Tryb Pride"><svg class="ic"><use href="#i-flag"/></svg></button>
         <button class="md" data-theme-btn="party" data-tip="Party" aria-label="Tryb Party"><svg class="ic"><use href="#i-party-popper"/></svg></button>
+        -->
       </div>
       <a class="nv-cta" href="#kontakt" data-go="kontakt" data-copy="dockCta">Pogadajmy</a>
     </div>
@@ -506,13 +520,62 @@
   </div>
   <div class="in">
     <ul class="sk-list" id="sk-list">
-      <li class="sk-r"><span class="n">01</span><span><b class="nm">Wydarzenia i produkcja</b><span class="cp">Pomysł, format, planowanie, budżet, organizacja, współpraca z dostawcami.</span></span><span class="cat">Produkcja</span><span class="sk-th"><span class="ph"><span>foto</span></span></span><span class="mt">~50 000 wydarzeń</span></li>
-      <li class="sk-r"><span class="n">02</span><span><b class="nm">Artyści i rynek koncertowy</b><span class="cp">Strategia działalności koncertowej, relacje z organizatorami, planowanie projektów.</span></span><span class="cat">Koncerty</span><span class="sk-th"><span class="ph"><span>foto</span></span></span><span class="mt">trasa Maty 2025</span></li>
-      <li class="sk-r"><span class="n">03</span><span><b class="nm">Kluby, obiekty i organizatorzy</b><span class="cp">Uruchomienie, programowanie działalności, komercjalizacja, procesy i rozwój.</span></span><span class="cat">Obiekty</span><span class="sk-th"><span class="ph"><span>foto</span></span></span><span class="mt">[metryka]</span></li>
-      <li class="sk-r"><span class="n">04</span><span><b class="nm">Bilety, sprzedaż i marketing</b><span class="cp">Dystrybucja, ceny, dane, analiza wyników, kampanie i rozwój publiczności.</span></span><span class="cat">Sprzedaż</span><span class="sk-th"><span class="ph"><span>foto</span></span></span><span class="mt">Going. 2015–2023</span></li>
-      <li class="sk-r"><span class="n">05</span><span><b class="nm">Sponsoring i współprace</b><span class="cp">Strategia partnerstw, oferty, pozyskiwanie sponsorów, negocjacje i relacje.</span></span><span class="cat">Partnerstwa</span><span class="sk-th"><span class="ph"><span>foto</span></span></span><span class="mt">Rapstacja, Padel Club</span></li>
-      <li class="sk-r"><span class="n">06</span><span><b class="nm">Biznes i zarządzanie</b><span class="cp">Strategia, modele biznesowe, finanse projektu, zespoły, procesy i skalowanie.</span></span><span class="cat">Strategia</span><span class="sk-th"><span class="ph"><span>foto</span></span></span><span class="mt">20+ lat w branży</span></li>
-      <li class="sk-r"><span class="n">07</span><span><b class="nm">Technologia i nowe przedsięwzięcia</b><span class="cp">Rozpoznanie potrzeb, budowa oferty, wejście na rynek, rozwój produktów.</span></span><span class="cat">Tech</span><span class="sk-th"><span class="ph"><span>foto</span></span></span><span class="mt">Quilla</span></li>
+      <li class="sk-r">
+        <button class="sk-h" type="button" aria-expanded="false" aria-controls="skx-01"><span class="n">01</span><span><b class="nm">Wydarzenia i produkcja</b><span class="cp">Pomysł, format, planowanie, budżet, organizacja, współpraca z dostawcami.</span></span><span class="cat">Produkcja</span><span class="mt">~50 000 wydarzeń</span></button>
+        <div class="sk-x" id="skx-01" inert><div class="sk-x-c"><div class="sk-x-in">
+          <div class="ph sk-x-ph"><span>zdjęcie</span></div>
+          <div class="sk-x-t"><p class="sk-x-lead">Od pomysłu na format po dzień wydarzenia: budżet, harmonogram, dostawcy i ludzie na miejscu.</p><ul class="sk-x-sit"><li>Planujesz wydarzenie i potrzebujesz kogoś, kto ogarnie całość</li><li>Masz pomysł, ale brakuje budżetu i planu</li><li>Produkcja wymyka się spod kontroli tuż przed terminem</li></ul>
+            <div class="sk-x-act"><a class="sk-x-cta" href="#kontakt" data-go="kontakt">Pogadajmy o tym →</a><a class="sk-x-link" href="#festiwale" data-go="festiwale">Zobacz festiwale i trasy ↓</a></div></div>
+        </div></div></div>
+      </li>
+      <li class="sk-r">
+        <button class="sk-h" type="button" aria-expanded="false" aria-controls="skx-02"><span class="n">02</span><span><b class="nm">Artyści i rynek koncertowy</b><span class="cp">Strategia działalności koncertowej, relacje z organizatorami, planowanie projektów.</span></span><span class="cat">Koncerty</span><span class="mt">trasa Maty 2025</span></button>
+        <div class="sk-x" id="skx-02" inert><div class="sk-x-c"><div class="sk-x-in">
+          <div class="ph sk-x-ph"><span>zdjęcie</span></div>
+          <div class="sk-x-t"><p class="sk-x-lead">Strategia działalności koncertowej, kontakty z organizatorami i planowanie projektów, tras i występów.</p><ul class="sk-x-sit"><li>Artysta lub management wchodzi na rynek koncertowy</li><li>Trasa wymaga porządku w planie i relacjach z organizatorami</li><li>Chcesz zamienić jedno wydarzenie w stałą działalność</li></ul>
+            <div class="sk-x-act"><a class="sk-x-cta" href="#kontakt" data-go="kontakt">Pogadajmy o tym →</a><a class="sk-x-link" href="#festiwale" data-go="festiwale">Zobacz festiwale i trasy ↓</a></div></div>
+        </div></div></div>
+      </li>
+      <li class="sk-r">
+        <button class="sk-h" type="button" aria-expanded="false" aria-controls="skx-03"><span class="n">03</span><span><b class="nm">Kluby, obiekty i organizatorzy</b><span class="cp">Uruchomienie, programowanie działalności, komercjalizacja, procesy i rozwój.</span></span><span class="cat">Obiekty</span><span class="mt">[metryka]</span></button>
+        <div class="sk-x" id="skx-03" inert><div class="sk-x-c"><div class="sk-x-in">
+          <div class="ph sk-x-ph"><span>zdjęcie</span></div>
+          <div class="sk-x-t"><p class="sk-x-lead">Uruchomienie klubu lub obiektu, program, komercjalizacja i procesy, które pozwalają mu rosnąć.</p><ul class="sk-x-sit"><li>Otwierasz miejsce i potrzebujesz programu oraz modelu działania</li><li>Obiekt działa, ale nie zarabia tak, jak powinien</li><li>Zespół i procesy nie nadążają za rozwojem</li></ul>
+            <div class="sk-x-act"><a class="sk-x-cta" href="#kontakt" data-go="kontakt">Pogadajmy o tym →</a><a class="sk-x-link" href="#festiwale" data-go="festiwale">Zobacz festiwale i trasy ↓</a></div></div>
+        </div></div></div>
+      </li>
+      <li class="sk-r">
+        <button class="sk-h" type="button" aria-expanded="false" aria-controls="skx-04"><span class="n">04</span><span><b class="nm">Bilety, sprzedaż i marketing</b><span class="cp">Dystrybucja, ceny, dane, analiza wyników, kampanie i rozwój publiczności.</span></span><span class="cat">Sprzedaż</span><span class="mt">Going. 2015–2023</span></button>
+        <div class="sk-x" id="skx-04" inert><div class="sk-x-c"><div class="sk-x-in">
+          <div class="ph sk-x-ph"><span>zdjęcie</span></div>
+          <div class="sk-x-t"><p class="sk-x-lead">Dystrybucja, ceny, analiza danych i kampanie, które budują publiczność.</p><ul class="sk-x-sit"><li>Sprzedaż biletów stoi albo spada</li><li>Nie wiesz, które działania naprawdę sprzedają</li><li>Chcesz zbudować stałą publiczność</li></ul>
+            <div class="sk-x-act"><a class="sk-x-cta" href="#kontakt" data-go="kontakt">Pogadajmy o tym →</a><a class="sk-x-link" href="#festiwale" data-go="festiwale">Zobacz festiwale i trasy ↓</a></div></div>
+        </div></div></div>
+      </li>
+      <li class="sk-r">
+        <button class="sk-h" type="button" aria-expanded="false" aria-controls="skx-05"><span class="n">05</span><span><b class="nm">Sponsoring i współprace</b><span class="cp">Strategia partnerstw, oferty, pozyskiwanie sponsorów, negocjacje i relacje.</span></span><span class="cat">Partnerstwa</span><span class="mt">Rapstacja, Padel Club</span></button>
+        <div class="sk-x" id="skx-05" inert><div class="sk-x-c"><div class="sk-x-in">
+          <div class="ph sk-x-ph"><span>zdjęcie</span></div>
+          <div class="sk-x-t"><p class="sk-x-lead">Strategia partnerstw, oferty dla sponsorów, negocjacje i opieka nad relacjami.</p><ul class="sk-x-sit"><li>Szukasz sponsorów, a oferta nie przyciąga</li><li>Marka chce wejść w wydarzenia i nie wie jak</li><li>Współpraca wymaga negocjacji i dopilnowania szczegółów</li></ul>
+            <div class="sk-x-act"><a class="sk-x-cta" href="#kontakt" data-go="kontakt">Pogadajmy o tym →</a><a class="sk-x-link" href="#marki" data-go="marki">Zobacz partnerów i kampanie ↓</a></div></div>
+        </div></div></div>
+      </li>
+      <li class="sk-r">
+        <button class="sk-h" type="button" aria-expanded="false" aria-controls="skx-06"><span class="n">06</span><span><b class="nm">Biznes i zarządzanie</b><span class="cp">Strategia, modele biznesowe, finanse projektu, zespoły, procesy i skalowanie.</span></span><span class="cat">Strategia</span><span class="mt">20+ lat w branży</span></button>
+        <div class="sk-x" id="skx-06" inert><div class="sk-x-c"><div class="sk-x-in">
+          <div class="ph sk-x-ph"><span>zdjęcie</span></div>
+          <div class="sk-x-t"><p class="sk-x-lead">Strategia, model biznesowy, finanse projektu, zespoły i skalowanie.</p><ul class="sk-x-sit"><li>Projekt rośnie i trzeba nim zarządzać inaczej</li><li>Potrzebujesz drugiej opinii przed ważną decyzją</li><li>Finanse i procesy wymagają uporządkowania</li></ul>
+            <div class="sk-x-act"><a class="sk-x-cta" href="#kontakt" data-go="kontakt">Pogadajmy o tym →</a><a class="sk-x-link" href="#profil" data-go="profil">Zobacz, kim jestem ↓</a></div></div>
+        </div></div></div>
+      </li>
+      <li class="sk-r">
+        <button class="sk-h" type="button" aria-expanded="false" aria-controls="skx-07"><span class="n">07</span><span><b class="nm">Technologia i nowe przedsięwzięcia</b><span class="cp">Rozpoznanie potrzeb, budowa oferty, wejście na rynek, rozwój produktów.</span></span><span class="cat">Tech</span><span class="mt">Quilla</span></button>
+        <div class="sk-x" id="skx-07" inert><div class="sk-x-c"><div class="sk-x-in">
+          <div class="ph sk-x-ph"><span>zdjęcie</span></div>
+          <div class="sk-x-t"><p class="sk-x-lead">Rozpoznanie potrzeb, budowa oferty, wejście na rynek i rozwój produktów.</p><ul class="sk-x-sit"><li>Masz pomysł na produkt i nie wiesz, jak go sprawdzić</li><li>Wchodzisz na nowy rynek</li><li>Produkt potrzebuje oferty i planu rozwoju</li></ul>
+            <div class="sk-x-act"><a class="sk-x-cta" href="#kontakt" data-go="kontakt">Pogadajmy o tym →</a><a class="sk-x-link" href="#profil" data-go="profil">Zobacz, kim jestem ↓</a></div></div>
+        </div></div></div>
+      </li>
     </ul>
   </div>
   <div class="sk-guide" id="sk-guide"><span>trigger · środek ekranu</span></div>
@@ -582,7 +645,7 @@
 
 <script>
 (function(){
-  var THEMES=['light','dark','pride','party'];
+  var THEMES=['light','dark'];/* pride i party wyłączone; patrz komentarz przy przełączniku trybów */
   var FONTS=[
     ['Z motywu',''],
     ['Sans (system)','ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",sans-serif'],
@@ -756,7 +819,7 @@
       var top=HDR(),y=top+(window.innerHeight-top)/2,sr=sec.getBoundingClientRect();
       guide.style.top=y+'px';guide.classList.toggle('vis',sr.top<window.innerHeight&&sr.bottom>top);
       var range=window.innerHeight*.45;
-      rows.forEach(function(r){var b=r.getBoundingClientRect();r.classList.toggle('on',b.top<=y&&b.bottom>y);var d=Math.min(1,Math.pow(Math.abs((b.top+b.bottom)/2-y)/range,1.15));r.style.setProperty('--d',d.toFixed(3))});
+      rows.forEach(function(r){var b=r.getBoundingClientRect();var op=r.classList.contains('open');r.classList.toggle('on',op||(b.top<=y&&b.bottom>y));var d=op?0:Math.min(1,Math.pow(Math.abs((b.top+b.bottom)/2-y)/range,1.15));r.style.setProperty('--d',d.toFixed(3))});
     }
     var list=document.getElementById('sk-list');
     function fit(){
@@ -767,6 +830,16 @@
       upd();
     }
     function req(){if(!tick){tick=true;requestAnimationFrame(upd)}}
+    function follow(){var t0=performance.now();(function f(){upd();if(performance.now()-t0<520)requestAnimationFrame(f)})()}
+    rows.forEach(function(r){
+      var h=r.querySelector('.sk-h'),x=r.querySelector('.sk-x');
+      h.addEventListener('click',function(){
+        var open=!r.classList.contains('open');
+        rows.forEach(function(o){o.classList.remove('open');o.querySelector('.sk-h').setAttribute('aria-expanded','false');o.querySelector('.sk-x').inert=true});
+        if(open){r.classList.add('open');h.setAttribute('aria-expanded','true');x.inert=false}
+        follow();
+      });
+    });
     window.addEventListener('scroll',req,{passive:true});window.addEventListener('resize',fit);window.addEventListener('load',fit);
     document.addEventListener('input',function(){setTimeout(fit,0)});
     fit();
