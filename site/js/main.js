@@ -80,21 +80,27 @@
     });
   }
 
-  /* --- 4b. Wersja tekstów: A (obecne) / B (z dokumentu; atrybut data-b + bloki .b-only) --- */
-  var btnA = document.getElementById('copy-a'), btnB = document.getElementById('copy-b');
-  function setCopy(b) {
-    [].slice.call(document.querySelectorAll('[data-b]')).forEach(function (el) {
+  /* --- 4b. Wersja tekstów: A (obecne), B (z dokumentu 1), C (z dokumentu „nowy konspekt") ---
+     Elementy z data-b / data-c podmieniają tekst; bez atrybutu zostaje tekst A.
+     Bloki .b-only / .c-only widać tylko w danej wersji, .ab-only znika w C. */
+  var modeBtns = [].slice.call(document.querySelectorAll('[data-copy-mode]'));
+  var swapEls = [].slice.call(document.querySelectorAll('[data-b], [data-c]'));
+  function setCopy(mode) {
+    swapEls.forEach(function (el) {
       if (el.dataset.a === undefined) el.dataset.a = el.textContent;
-      el.textContent = b ? el.dataset.b : el.dataset.a;
+      var t = el.dataset.a;
+      if (mode === 'b' && el.dataset.b !== undefined) t = el.dataset.b;
+      if (mode === 'c' && el.dataset.c !== undefined) t = el.dataset.c;
+      el.textContent = t;
     });
-    document.body.classList.toggle('txt-b', b);
-    if (btnA && btnB) { btnA.setAttribute('aria-pressed', !b); btnB.setAttribute('aria-pressed', b); }
-    try { localStorage.setItem('amz2-copy', b ? 'b' : 'a'); } catch (e) {}
+    document.body.classList.toggle('txt-b', mode === 'b');
+    document.body.classList.toggle('txt-c', mode === 'c');
+    modeBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.copyMode === mode); });
+    try { localStorage.setItem('amz2-copy', mode); } catch (e) {}
   }
-  if (btnA && btnB) {
-    btnA.addEventListener('click', function () { setCopy(false); });
-    btnB.addEventListener('click', function () { setCopy(true); });
-    try { if (localStorage.getItem('amz2-copy') === 'b') setCopy(true); } catch (e) {}
+  if (modeBtns.length) {
+    modeBtns.forEach(function (b) { b.addEventListener('click', function () { setCopy(b.dataset.copyMode); }); });
+    try { var saved = localStorage.getItem('amz2-copy'); if (saved === 'b' || saved === 'c') setCopy(saved); } catch (e) {}
   }
 
   /* --- 5. Calendesk: dopasowanie wysokości ramki i przewijanie do kroku --- */

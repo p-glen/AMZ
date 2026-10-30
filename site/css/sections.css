@@ -214,11 +214,16 @@ a.row:hover, .row--hover:hover { padding-left: var(--space-4); }
   .work__media img { transform: none; transition: none; }
 }
 
-/* ---------- Narzędzie robocze: przełącznik wersji tekstów (usunąć przy publikacji) ---------- */
-.copy-switch { position: fixed; left: var(--gutter); bottom: var(--space-5); z-index: 60; display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: var(--bg); color: var(--ink); border: 1px solid var(--line); font-size: var(--fs-0); letter-spacing: 0.06em; }
-.copy-switch span { color: var(--ink-soft); text-transform: uppercase; letter-spacing: var(--tracking-caps); margin-right: var(--space-2); }
-.copy-switch button { background: transparent; border: 1px solid transparent; padding: var(--space-1) var(--space-3); }
+/* ---------- Narzędzie robocze: przełącznik wersji tekstów A / B / C (usunąć przy publikacji) ---------- */
+.copy-switch { position: fixed; left: var(--gutter); bottom: var(--space-4); z-index: 60; display: flex; align-items: center; gap: 2px; padding: 3px 4px 3px 8px; background: var(--bg); color: var(--ink); border: 1px solid var(--line); font-size: 0.6875rem; line-height: 1; }
+.copy-switch span { color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.12em; margin-right: 6px; font-size: 0.625rem; }
+.copy-switch button { background: transparent; border: 1px solid transparent; padding: 4px 8px; font-size: 0.6875rem; line-height: 1; }
 .copy-switch button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--bg); }
 body:not(.txt-b) .b-only { display: none; }
+body:not(.txt-c) .c-only { display: none; }
+body.txt-c .ab-only { display: none; }
+body.txt-c .origin-more aside { grid-column: 1 / -1; }
 .extra { margin-bottom: var(--space-8); padding-bottom: var(--space-8); border-bottom: 1px solid var(--line); }
 .extra .h2 { margin-bottom: var(--space-5); }
+.slogans { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin-block: var(--space-7); font-size: var(--fs-3); line-height: 1.05; letter-spacing: var(--tracking-display); text-transform: uppercase; font-weight: 500; }
+.slogans span + span::before { content: "/"; margin-right: var(--space-5); color: var(--ink-soft); }
