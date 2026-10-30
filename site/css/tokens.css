@@ -1,34 +1,37 @@
 /* ==========================================================================
    Tokeny projektowe v2. Jedyne miejsce, gdzie definiujemy kolory, typografię,
    odstępy i kształty. Reszta CSS używa tylko zmiennych z tego pliku.
+   Kierunek: spokojna, monochromatyczna, redakcyjna strona (ciepła biel, grafit,
+   duża wersalikowa typografia, zdjęcia na pełną szerokość).
    ========================================================================== */
 
 :root {
-  /* --- Kolor: powierzchnie i tekst (motyw jasny) --- */
-  --bg:        #f3f2ef;
+  /* --- Kolor (motyw jasny) --- */
+  --bg:        #f5f3ef;
   --surface:   #ffffff;
-  --ink:       #1b1b1b;
-  --ink-soft:  #6f6f6a;
-  --line:      #cfcdc8;
-
-  /* --- Kolor: akcent (jeden, używany świadomie) --- */
-  --accent:    #c5f700;
-  --on-accent: #14141a;
+  --ink:       #1f1f1c;
+  --ink-soft:  #595955;
+  --line:      #d9d6cf;
+  --accent:    #e4dccb;   /* tylko zaznaczenie tekstu i subtelne tła; strona jest monochromatyczna */
+  --on-accent: #1f1f1c;
+  --dark-bg:   #161613;   /* stopka i sekcje ciemne */
+  --dark-ink:  #f1eee8;
 
   /* --- Typografia --- */
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Helvetica Neue", Helvetica, "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
-  /* skala (płynna: min, preferowana, max) */
-  --fs-0: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);  /* tekst pomocniczy */
-  --fs-1: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);       /* tekst podstawowy */
-  --fs-2: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);      /* nagłówek małego poziomu */
-  --fs-3: clamp(1.75rem, 1.3rem + 2vw, 3rem);           /* nagłówek sekcji */
-  --fs-4: clamp(2.5rem, 1.6rem + 4.2vw, 5.5rem);        /* nagłówek główny */
-  --lh-tight: 1.02;
-  --lh-snug:  1.2;
-  --lh-body:  1.5;
-  --tracking-display: -0.03em;
+  --fs-0: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);   /* podpisy, menu */
+  --fs-1: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);        /* tekst podstawowy */
+  --fs-2: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);      /* lead, wiersze list */
+  --fs-3: clamp(1.75rem, 1.2rem + 2.2vw, 3.25rem);       /* nagłówek sekcji */
+  --fs-4: clamp(2.25rem, 1rem + 5.4vw, 7rem);            /* nagłówek główny */
+  --fs-stat: clamp(3.5rem, 1.5rem + 8vw, 10rem);         /* duże liczby */
+  --lh-tight: 0.98;
+  --lh-snug:  1.15;
+  --lh-body:  1.55;
+  --tracking-display: -0.035em;
+  --tracking-caps: 0.14em;
 
   /* --- Odstępy (skala 4px) --- */
   --space-1: 0.25rem;
@@ -42,32 +45,36 @@
   --space-9: 7rem;
 
   /* --- Układ --- */
-  --container: 80rem;      /* maks. szerokość treści */
-  --gutter: clamp(1rem, 4vw, 2.5rem);
-  --section-y: clamp(4rem, 9vw, 8rem);
+  --container: 88rem;
+  --measure: 40rem;          /* szerokość akapitu */
+  --gutter: clamp(1rem, 3vw, 2.5rem);
+  --section-y: clamp(5rem, 11vw, 10rem);
 
   /* --- Kształt i ruch --- */
-  --radius: 2px;           /* jeden promień dla całej strony; zmieniasz tu */
+  --radius: 0px;             /* strona jest ostra; zmieniasz tu */
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --dur-1: 180ms;
-  --dur-2: 420ms;
+  --dur-1: 200ms;
+  --dur-2: 700ms;
 }
 
-/* Motyw ciemny: ustawiany atrybutem data-theme="dark" albo systemem, jeśli brak wyboru */
 :root[data-theme="dark"] {
-  --bg:        #121212;
-  --surface:   #1c1c1c;
-  --ink:       #ededed;
-  --ink-soft:  #9a9a94;
-  --line:      #3a3a38;
+  --bg:        #131311;
+  --surface:   #1c1c19;
+  --ink:       #f1eee8;
+  --ink-soft:  #a4a199;
+  --line:      #3a3a35;
+  --accent:    #3a362c;
+  --on-accent: #f1eee8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg:        #121212;
-    --surface:   #1c1c1c;
-    --ink:       #ededed;
-    --ink-soft:  #9a9a94;
-    --line:      #3a3a38;
+    --bg:        #131311;
+    --surface:   #1c1c19;
+    --ink:       #f1eee8;
+    --ink-soft:  #a4a199;
+    --line:      #3a3a35;
+    --accent:    #3a362c;
+    --on-accent: #f1eee8;
   }
 }

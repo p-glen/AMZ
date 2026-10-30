@@ -4,29 +4,348 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Anna Maria Żurek</title>
-  <meta name="description" content="Anna Maria Żurek: wydarzenia, artyści, marki i biznes.">
+  <meta name="description" content="Anna Maria Żurek: od dwóch dekad po obu stronach kurtyny. Wydarzenia, artyści, marki i biznes.">
   <!-- Wersja robocza (v2): nie indeksować, dopóki nie będzie gotowa. Usuń przy publikacji. -->
   <meta name="robots" content="noindex, nofollow">
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sections.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Przejdź do treści</a>
 
-  <header class="container" style="padding-block: var(--space-5); display:flex; justify-content:space-between; align-items:center;">
-    <span style="font-weight:700; letter-spacing: var(--tracking-display);">Anna Maria Żurek</span>
-    <button id="theme-toggle" class="btn" type="button" aria-label="Przełącz motyw jasny/ciemny">Motyw</button>
+  <header class="site-header">
+    <nav class="site-nav site-nav--left" aria-label="Główna">
+      <a href="#projekty">Projekty</a>
+      <a href="#wystapienia">Wystąpienia</a>
+      <a href="#pomagam">W czym pomagam</a>
+    </nav>
+    <a class="wordmark" href="#top" aria-label="Anna Maria Żurek, początek strony">Anna Maria Żurek</a>
+    <nav class="site-nav site-nav--right" aria-label="Kontakt">
+      <a href="#pogadajmy">Pogadajmy</a>
+    </nav>
   </header>
 
   <main id="main">
-    <section class="section">
-      <div class="container stack">
-        <p class="eyebrow">v2 · w budowie</p>
-        <h1>Nowa wersja strony.</h1>
-        <p style="color: var(--ink-soft); max-width: 40ch;">Pusta podstawa: tokeny, typografia i układ. Sekcje dojdą po ustaleniu kierunku.</p>
+
+    <!-- 1. HERO: przypięty ekran, zdjęcie wyostrza się przy przewijaniu -->
+    <section class="pin hero" id="top" aria-label="Wprowadzenie">
+      <div class="pin__stage">
+        <img class="hero__img" src="assets/img/hero.jpg" alt="Anna Maria Żurek przed czerwoną kurtyną" fetchpriority="high">
+        <div class="hero__shade"></div>
+        <div class="hero__mark" aria-hidden="true">Anna Maria Żurek</div>
+        <div class="hero__copy">
+          <h1 class="hero__title">Od dwóch dekad działam po obu stronach kurtyny</h1>
+          <p class="hero__sub">Od kreacji i biznesu po scenę i kasę.</p>
+        </div>
+        <div class="hero__scroll" aria-hidden="true">Przewiń</div>
+      </div>
+    </section>
+
+    <!-- 2. WPROWADZENIE + LICZBY -->
+    <section class="block intro-wrap" aria-labelledby="intro-h">
+      <div class="container intro">
+        <div class="intro__top">
+          <p class="eyebrow">Cześć, jestem Anka!</p>
+          <h2 class="statement reveal" id="intro-h">Od ponad 20 lat współtworzę świat wydarzeń na żywo w Polsce.</h2>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat__num"><span class="cnt" data-to="50000" aria-label="50 000+"><span class="cnt-ghost">50&nbsp;000+</span><span class="cnt-val" aria-hidden="true"><span class="cnt-num">0</span><span class="cnt-plus">+</span></span></span></div>
+            <p class="stat__label">wydarzeń, lekko szacując</p>
+          </div>
+          <div class="stat">
+            <div class="stat__num"><span class="cnt" data-to="20" aria-label="20+"><span class="cnt-ghost">20+</span><span class="cnt-val" aria-hidden="true"><span class="cnt-num">0</span><span class="cnt-plus">+</span></span></span></div>
+            <p class="stat__label">lat w branży</p>
+          </div>
+        </div>
+
+        <div class="intro__cols">
+          <div class="prose reveal">
+            <p>W większym lub mniejszym stopniu działałam przy – lekko szacując – ~50.000 wydarzeń. Jak to możliwe?</p>
+            <p>Jestem współzałożycielką w 2015 bileterii Going., którą pożegnałam w 2023. A już wcześniej organizowałam wydarzenia w całej Polsce (sprawdź cykl koncertów zagranicznych gwiazd World Wide Warsaw oraz zloty food trucków Żarcie Na Kółkach).</p>
+            <p>W ostatnich latach współpracowałam m.in. z managementem Maty przy jego rekordowej trasie w 2025 oraz dwóch koncertach na PGE Narodowym, czy przy koncercie JIMKA na Bemowie dla ponad 50.000 osób. Do tego aktywnie działam przy sponsoringu m.in. dla Festiwalu Rapstacja, czy klubu Warsaw Padel Club.</p>
+            <div class="actions">
+              <a class="btn btn--solid" href="#pogadajmy">Opowiedz mi, nad czym pracujesz</a>
+              <a class="link-quiet" href="#pomagam">Zobacz, w czym pomagam</a>
+            </div>
+          </div>
+          <figure class="portrait reveal">
+            <img src="assets/img/portrait-bw.jpg" alt="Anna Maria Żurek, portret czarno-biały" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. WYBRANE PROJEKTY -->
+    <section class="block" id="projekty" aria-labelledby="proj-h">
+      <div class="container">
+        <header class="works__head reveal">
+          <p class="eyebrow">Projekty</p>
+          <h2 class="h2" id="proj-h">Oto wybrane projekty z moim udziałem.</h2>
+        </header>
+
+        <div class="works">
+          <article class="work work--a reveal">
+            <figure class="work__media"><img src="assets/img/going-tixy.jpg" alt="Panel o innowacjach w bileteriach, Strefa TIXY" loading="lazy" style="object-position:45% 38%"></figure>
+            <div class="work__cap">
+              <p class="work__n">01 · 2015–2023</p>
+              <h3 class="work__title">Going.</h3>
+              <p class="work__role">Od startupu do jednej z czołowych bileterii w Polsce.</p>
+            </div>
+          </article>
+
+          <article class="work work--b reveal">
+            <figure class="work__media"><img src="assets/img/www-rejjie.jpg" alt="Rejjie Snow na scenie World Wide Warsaw 2018" loading="lazy"></figure>
+            <div class="work__cap">
+              <p class="work__n">02 · 2016–2018</p>
+              <h3 class="work__title">World Wide Warsaw</h3>
+              <p class="work__role">Światowe nazwiska na warszawskich scenach.</p>
+              <p class="work__credit">Rejjie Snow, WWW 2018. Foto: Paweł Zanio, materiały własne artysty</p>
+            </div>
+          </article>
+
+          <article class="work work--e reveal">
+            <figure class="work__media"><img src="assets/img/flylo-1.jpg" alt="Flying Lotus w Teatrze Studio, widok na publiczność" loading="lazy"></figure>
+            <div class="work__cap">
+              <p class="work__n">03 · 2015</p>
+              <h3 class="work__title">Flying Lotus w Teatrze Studio</h3>
+              <p class="work__role">Organizacja 360.</p>
+            </div>
+          </article>
+
+          <article class="work work--c reveal">
+            <figure class="work__media"><img src="assets/img/mata-pge.jpg" alt="Koncert Maty na PGE Narodowym, ekrany i tłum" loading="lazy" style="object-position:50% 62%"></figure>
+            <div class="work__cap">
+              <p class="work__n">04 · PGE Narodowy</p>
+              <h3 class="work__title">Mata na PGE Narodowym</h3>
+              <p class="work__role">Wsparcie ticketingowe, obsługa VIP.</p>
+            </div>
+          </article>
+
+          <article class="work work--a reveal">
+            <figure class="work__media"><img src="assets/img/mata-narodowy.jpg" alt="Mata na wybiegu, Stadion Narodowy" loading="lazy" style="object-position:18% 50%"></figure>
+            <div class="work__cap">
+              <p class="work__n">05 · 2025</p>
+              <h3 class="work__title">Trasa #MATA2040</h3>
+              <p class="work__role">Współpraca projektowa z managementem.</p>
+              <p class="work__credit">Foto: Michał Murawski, materiały prasowe</p>
+            </div>
+          </article>
+
+          <article class="work work--d reveal">
+            <figure class="work__media"><img src="assets/img/jimek.jpg" alt="JIMEK dyryguje orkiestrą przed tłumem ze światłami telefonów, Bemowo" loading="lazy" style="object-position:62% 50%"></figure>
+            <div class="work__cap">
+              <p class="work__n">06 · 2021 i 2023</p>
+              <h3 class="work__title">JIMEK Historia Polskiego Hip-Hopu</h3>
+              <p class="work__role">Koordynacja, nadzór, partnerzy.</p>
+            </div>
+          </article>
+
+          <article class="work work--b reveal">
+            <figure class="work__media"><img src="assets/img/zarcie.jpg" alt="Ulica pełna ludzi i food trucków na Żarciu Na Kółkach" loading="lazy" style="object-position:50% 55%"></figure>
+            <div class="work__cap">
+              <p class="work__n">07 · Projekt autorski</p>
+              <h3 class="work__title">Żarcie na kółkach</h3>
+              <p class="work__role">Zloty food trucków w całej Polsce, rozwijane przez lata.</p>
+            </div>
+          </article>
+
+          <article class="work work--c reveal">
+            <figure class="work__media"><img src="assets/img/rapstacja.jpg" alt="Rap Stacja Festiwal nocą z drona: scena, fajerwerki i tłum" loading="lazy" style="object-position:30% 50%"></figure>
+            <div class="work__cap">
+              <p class="work__n">08 · Sponsoring</p>
+              <h3 class="work__title">Rapstacja</h3>
+              <p class="work__role">Festiwal, sponsoring.</p>
+            </div>
+          </article>
+
+          <article class="work work--d reveal">
+            <figure class="work__media"><img src="assets/img/padel.jpg" alt="Nocna sesja padla w ubraniach OYSHO na korcie Warsaw Padel Club" loading="lazy"></figure>
+            <div class="work__cap">
+              <p class="work__n">09 · Sponsoring</p>
+              <h3 class="work__title">Warsaw Padel Club</h3>
+              <p class="work__role">Sponsoring, partnerstwa i wydarzenia.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="pull"><div class="container"><p class="reveal">Za każdym wydarzeniem stoi jakaś historia – moja historia trwa już ponad 20 lat.</p></div></div>
+
+    <!-- 4. POCZĄTKI: przypięte warstwy zdjęć -->
+    <section class="pin origin" aria-labelledby="origin-h">
+      <div class="pin__stage">
+        <img class="origin__a" src="assets/img/flylo-1.jpg" alt="" loading="lazy">
+        <img class="origin__b" src="assets/img/flylo-3.jpg" alt="" loading="lazy">
+        <img class="origin__poster" src="assets/img/flylo-poster.jpg" alt="Plakat Flying Lotus, Teatr Studio, czerwiec 2015" loading="lazy">
+        <div class="origin__copy">
+          <h2 class="h2" id="origin-h">Zaczynałam jako organizatorka wydarzeń</h2>
+          <p>Początki to mniejsze bookingi DJskie w legendarnych nieczynnych już klubach takich, jak 1500m2 do wynajęcia czy Pogłos lub BASEN Artystyczny – wraz ze wspólnikami odkrywaliśmy artystów, zanim stali się światowymi gwiazdami.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="container origin-more">
+        <div class="prose reveal">
+          <p>Po kilku latach płynnie przeszłam do organizacji masowych produkcji wypełniających największe obiekty koncertowe w Polsce.</p>
+          <p>Przez lata współtworzyłam World Wide Warsaw, sprowadzając do Polski nazwiska, które dziś wyznaczają kierunki światowej muzyki. Organizowałam kameralne koncerty, nieoczywiste wydarzenia i spektakularne widowiska. Od Flying Lotusa w Teatrze Studio po Matę na PGE Narodowym i JIMKA na Stadionie w Chorzowie i Lotnisku Bemowo.</p>
+          <p>Znam tę branżę od podszewki po ostatni sznyt: booking, koncepcja, promocja, sprzedaż, produkcja i budżet.</p>
+        </div>
+        <aside class="reveal">
+          <p class="eyebrow">Artyści w ramach World Wide Warsaw</p>
+          <p class="artists" style="margin-top: var(--space-3);">Post Malone · Playboi Carti · Anderson .Paak · Taco Hemingway · Flying Lotus · Thundercat · King Krule · The Internet · Sampha · Bicep · Kelela · Autechre · Tycho · Snakehips · Boy Pablo · Rejjie Snow · Robert Glasper Trio · Yussef Kamaal · Leon Vynehall · John Talabot · Clams Casino · DJ EZ · Artful Dodger · Mall Grab · Ross From Friends · Forest Swords · Com Truise · Nosaj Thing · The Gaslamp Killer · Dâm-Funk · Omar S · DVS1 · Shigeto · Jimmy Edgar · Sigha · Terence Fixmer · Efdemin · DJ Boring · Amp Fiddler · DJ Sundance · Batuk · Smerz · Junglepussy · Heathered Pearls · Lord Raja · Edward · Easter · Bitamina · Rasmentalism · Sokół i Marysia Starosta · Otsochodzi · Rosalie · Kamp! · P.Unity</p>
+
+          <div class="press">
+            <p class="eyebrow" style="padding-top: var(--space-4);">Publikacje medialne i archiwalne linki · 2016–2018</p>
+            <ul style="margin-top: var(--space-3);">
+              <li><a href="https://noizz.pl/world-wide-warsaw" target="_blank" rel="noopener"><span>NOIZZ</span><span>↗</span></a></li>
+              <li><a href="https://muno.pl/news/world-wide-warsaw-2017-warszawa-festiwal-lineup-program-bilety/" target="_blank" rel="noopener"><span>Muno.pl</span><span>↗</span></a></li>
+              <li><a href="https://newonce.net/artykul/playboi-carti-rejjie-snow-kelela-i-inni-bardzo-czekamy-na-festiwal-world-wide-warsaw" target="_blank" rel="noopener"><span>Newonce</span><span>↗</span></a></li>
+              <li><a href="https://4fun.tv/news/world-wide-warsaw" target="_blank" rel="noopener"><span>4FUN TV</span><span>↗</span></a></li>
+              <li><a href="https://kultura.onet.pl/muzyka/koncerty/the-gaslamp-killer-i-nosaj-thing-na-world-wide-warsaw-before-parties/kee8s7g" target="_blank" rel="noopener"><span>Onet.pl</span><span>↗</span></a></li>
+              <li><a href="https://www.wprost.pl/511780/flying-lotus-w-warszawie-relacja.html" target="_blank" rel="noopener"><span>WPROST</span><span>↗</span></a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 5. WYSTĄPIENIA -->
+    <section class="block" id="wystapienia" aria-labelledby="talks-h" style="background: var(--surface);">
+      <div class="container">
+        <div class="talks__head">
+          <h2 class="h2 reveal" id="talks-h">Wystąpienia, panele</h2>
+          <div class="prose reveal">
+            <p>Lubię dzielić się wiedzą. Szczególnie z ludźmi, którzy – podobnie jak ja – wiedzą, że za każdym koncertem stoją nie tylko emocje, ale też liczby, decyzje, ryzyko i całkiem sporo nieprzewidzianych zwrotów akcji.</p>
+            <p>Regularnie biorę udział w konferencjach i dyskusjach branżowych. Rozmawiam o sprzedaży biletów, ekonomii wydarzeń, nowych technologiach, danych i przyszłości rynku muzycznego. Czasem jako panelistka, czasem prowadząca, zawsze z perspektywy praktyczki.</p>
+            <p>Można mnie było spotkać m.in. na Great September, Next Fest, Akademii Popkillerów, MusicTech Poland i wydarzeniach Venture Café Warsaw.</p>
+          </div>
+        </div>
+
+        <ul class="list" id="talks">
+          <li><a class="row" href="https://www.ebilet.pl/now/sercem-i-rozumem-o-panelu-dane-w-sluzbie-muzyki-podczas-great-september/" target="_blank" rel="noopener" data-img="assets/img/talk-gs-dane.jpg">
+            <span class="row__n">01</span>
+            <span class="row__t">Dane w służbie muzyki<small>Jak dane pomagają planować koncerty, analizować sprzedaż i podejmować lepsze decyzje w branży muzycznej.</small></span>
+            <span class="row__m">Great September 2024</span></a></li>
+          <li><a class="row" href="https://www.wwq.popkiller.pl/2025-04-09%2Cfestiwal-latwy-zarobek-czy-ryzykowny-biznes-waldi-nowacki-marcin-kania-anna-maria-zurek" target="_blank" rel="noopener" data-img="assets/img/talk-nextfest.jpg">
+            <span class="row__n">02</span>
+            <span class="row__t">Festiwal: łatwy zarobek czy ryzykowny biznes?<small>O ekonomii festiwali, kosztach, ryzyku i realiach pracy organizatorów.</small></span>
+            <span class="row__m">Akademia Popkillerów 2025</span></a></li>
+          <li><a class="row" href="https://pl.linkedin.com/posts/anna-maria-zurek_przede-mn%C4%85-kolejna-okazja-by-wymieni%C4%87-spostrze%C5%BCenia-activity-7245779332801978368-q-zH" target="_blank" rel="noopener" data-img="assets/img/talk-musictech.jpg">
+            <span class="row__n">03</span>
+            <span class="row__t">Rozmowa o AI w muzyce<small>O możliwościach sztucznej inteligencji i nowych technologiach w codziennej pracy branży.</small></span>
+            <span class="row__m">MusicTech Poland 2024</span></a></li>
+          <li><div class="row row--hover" data-img="assets/img/talk-gs-1.jpg">
+            <span class="row__n">04</span>
+            <span class="row__t">Innowacje i kierunki rozwoju w bileteriach<small>Współprowadzenie rozmowy o zmianach technologicznych i przyszłości sprzedaży biletów.</small></span>
+            <span class="row__m">Great September 2024</span></div></li>
+          <li><div class="row row--hover" data-img="assets/img/talk-venture.jpg">
+            <span class="row__n">05</span>
+            <span class="row__t">Jak zbudować dobry produkt dla rynku muzycznego<small>O potrzebach organizatorów, artystów i firm muzycznych oraz projektowaniu użytecznych narzędzi.</small></span>
+            <span class="row__m">Venture Café Warsaw</span></div></li>
+          <li><a class="row" href="https://pl.linkedin.com/posts/anna-maria-zurek_do-zobaczenia-w-poznaniu-activity-7054753179493621760-kB6g" target="_blank" rel="noopener" data-img="assets/img/talk-nextfest.jpg">
+            <span class="row__n">06</span>
+            <span class="row__t">Panel o przyszłości sprzedaży biletów<small>Wystąpienie, archiwum.</small></span>
+            <span class="row__m">Next Fest 2023</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 6. W CZYM POMAGAM + JAK MOŻEMY DZIAŁAĆ -->
+    <section class="block services" id="pomagam" aria-labelledby="help-h">
+      <div class="container">
+        <div class="services__grid">
+          <div class="services__col">
+            <h2 class="h2 reveal" id="help-h">W czym pomagam</h2>
+            <ul class="list reveal">
+              <li><div class="row row--hover"><span class="row__n">01</span><span class="row__t">Wydarzenia i produkcja<small>Pomysł, format, planowanie, budżet, organizacja, współpraca z dostawcami.</small></span><span></span></div></li>
+              <li><div class="row row--hover"><span class="row__n">02</span><span class="row__t">Artyści i rynek koncertowy<small>Strategia działalności koncertowej, relacje z organizatorami, planowanie projektów.</small></span><span></span></div></li>
+              <li><div class="row row--hover"><span class="row__n">03</span><span class="row__t">Kluby, obiekty i organizatorzy<small>Uruchomienie, programowanie działalności, komercjalizacja, procesy i rozwój.</small></span><span></span></div></li>
+              <li><div class="row row--hover"><span class="row__n">04</span><span class="row__t">Bilety, sprzedaż i marketing<small>Dystrybucja, ceny, dane, analiza wyników, kampanie i rozwój publiczności.</small></span><span></span></div></li>
+              <li><div class="row row--hover"><span class="row__n">05</span><span class="row__t">Sponsoring i współprace<small>Strategia partnerstw, oferty, pozyskiwanie sponsorów, negocjacje i relacje.</small></span><span></span></div></li>
+              <li><div class="row row--hover"><span class="row__n">06</span><span class="row__t">Biznes i zarządzanie<small>Strategia, modele biznesowe, finanse projektu, zespoły, procesy i skalowanie.</small></span><span></span></div></li>
+              <li><div class="row row--hover"><span class="row__n">07</span><span class="row__t">Technologia i nowe przedsięwzięcia<small>Rozpoznanie potrzeb, budowa oferty, wejście na rynek, rozwój produktów.</small></span><span></span></div></li>
+            </ul>
+          </div>
+
+          <div class="services__col">
+            <h2 class="h2 reveal">Jak możemy działać?</h2>
+            <p class="muted reveal" style="margin: calc(var(--space-6) * -0.5) 0 var(--space-6);">Z tym, co widać, i z tym, czego nie widać.</p>
+            <ul class="list reveal">
+              <li><div class="row row--hover"><span class="row__n">01</span><span class="row__t">Jedna konkretna rozmowa<small>Kiedy potrzebujesz oceny sytuacji, drugiej opinii albo planu działania.</small></span><span></span></div></li>
+              <li><div class="row row--hover"><span class="row__n">02</span><span class="row__t">Rozwiązanie określonego problemu<small>Analiza, rekomendacje i wsparcie we wdrożeniu.</small></span><span></span></div></li>
+              <li><div class="row row--hover"><span class="row__n">03</span><span class="row__t">Prowadzenie projektu<small>Od koncepcji i budżetu po koordynację wybranych działań.</small></span><span></span></div></li>
+              <li><div class="row row--hover"><span class="row__n">04</span><span class="row__t">Stałe wsparcie biznesowe<small>Doradztwo, rozwój przedsięwzięcia, partnerstwa i zarządzanie w uzgodnionym zakresie.</small></span><span></span></div></li>
+              <li><div class="row row--hover"><span class="row__n">05</span><span class="row__t">Połączenie z właściwymi ludźmi<small>Wskazanie lub pozyskanie partnerów i specjalistów.</small></span><span></span></div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="brands reveal">
+          <p class="eyebrow">Sponsoring · wybrane marki sponsorskie, z którymi współpracowałam projektowo</p>
+          <p class="brands__list"><span>Superbet</span> <span>VISA</span> <span>CCC</span> <span>Converse</span> <span>Dr Witt</span> <span>OYSHO</span> <span>Pernod Ricard</span> <span>CEDC</span> <span>glo</span> <span>Plus</span> <span>Oshee</span> <span>Decathlon</span> <span>Perła</span> <span>T-Mobile</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. POGADAJMY -->
+    <section class="block contact" id="pogadajmy" aria-labelledby="contact-h">
+      <div class="container contact__grid">
+        <div class="contact__who">
+          <img src="assets/img/contact-cutout.webp" alt="Anna Maria Żurek, portret z założonymi rękami" loading="lazy">
+        </div>
+        <div class="contact__main">
+          <h2 class="h2" id="contact-h">Pogadajmy</h2>
+          <p class="lead">Jeśli działasz w branży wydarzeń muzycznych i kulturalnych, od masowych po niszowe: pogadajmy! Wybierz termin rozmowy, opowiesz mi, nad czym pracujesz.</p>
+          <iframe class="calendesk-frame" src="https://mprq9o8fak.calendesk.net/?cdWidget=1" scrolling="no" title="Kalendarz rezerwacji" frameborder="0" loading="lazy"></iframe>
+        </div>
       </div>
     </section>
   </main>
+
+  <!-- 8. STOPKA: pełny ekran -->
+  <footer class="footer" id="kontakt">
+    <div class="footer__cta">
+      <div>
+        <a href="#pogadajmy">Pogadajmy</a>
+        <p>Opowiedz mi, nad czym pracujesz.</p>
+      </div>
+    </div>
+    <div class="footer__cols">
+      <div>
+        <h3>Anna Maria Żurek</h3>
+        <p>Wydarzenia, artyści, marki i biznes.</p>
+      </div>
+      <div>
+        <h3>Nawigacja</h3>
+        <ul>
+          <li><a href="#projekty">Projekty</a></li>
+          <li><a href="#wystapienia">Wystąpienia</a></li>
+          <li><a href="#pomagam">W czym pomagam</a></li>
+          <li><a href="#pogadajmy">Pogadajmy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Kontakt i social</h3>
+        <ul>
+          <li><a href="#">[e-mail]</a></li>
+          <li><a href="#" rel="noopener">LinkedIn</a></li>
+          <li><a href="#" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Anna Maria Żurek</span>
+        <a href="#">Polityka prywatności</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="preview" id="preview" aria-hidden="true"><img alt="" src=""></div>
 
   <script src="js/main.js"></script>
 </body>

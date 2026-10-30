@@ -7,12 +7,26 @@ Wersja 1 zostaje pod tagiem `v1-wireframe` oraz w `main`.
 
 ```
 site/
-  index.html        strona (jedna, sekcje dochodzą po kolei)
-  css/tokens.css    jedyne miejsce na kolory, typografię, odstępy, promień, ruch
-  css/base.css      reset, typografia, układ (.container, .section, .stack, .eyebrow)
-  js/main.js        motyw jasny/ciemny; reszta dochodzi z sekcjami
-  assets/           zdjęcia, ikony, wideo
+  index.html          jedna strona, sekcje po kolei
+  css/tokens.css      jedyne miejsce na kolory, typografię, odstępy, promień, ruch
+  css/base.css        reset, typografia, układ (.container, .section, .stack, .eyebrow, .btn)
+  css/sections.css    style sekcji (hero, projekty, początki, wystąpienia, usługi, kontakt, stopka)
+  js/main.js          postęp sekcji przypiętych (--p), pojawianie się, liczniki, podgląd zdjęć, Calendesk
+  assets/img/         zdjęcia (zmniejszone kopie z Resources/ i z wireframe/assets)
 ```
+
+## Sekcje (kolejność na stronie)
+
+1. **Hero** (przypięty, ok. 330 vh): zdjęcie wyostrza się przy przewijaniu, znak znika, wchodzi nagłówek.
+2. **Wprowadzenie + liczby** (50 000+ wydarzeń, 20+ lat), portret czarno-biały.
+3. **Wybrane projekty** (9 pozycji, układy a–e na przemian), potem hasło „Za każdym wydarzeniem…".
+4. **Początki** (przypięte warstwy zdjęć: okno rośnie, plakat Flying Lotus), lista artystów WWW i linki prasowe.
+5. **Wystąpienia, panele** (lista z podglądem zdjęcia przy najechaniu).
+6. **W czym pomagam / Jak możemy działać / marki sponsorskie.**
+7. **Pogadajmy**: portret wycięty + kalendarz Calendesk.
+8. **Stopka** na pełny ekran.
+
+Postęp przypiętej sekcji (0..1) trafia do zmiennej CSS `--p`; wszystkie efekty hero i „Początków" to wzory CSS z `--p`, bez osobnych animacji w JS.
 
 ## Zasady
 
