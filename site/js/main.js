@@ -80,6 +80,23 @@
     });
   }
 
+  /* --- 4b. Wersja tekstów: A (obecne) / B (z dokumentu; atrybut data-b + bloki .b-only) --- */
+  var btnA = document.getElementById('copy-a'), btnB = document.getElementById('copy-b');
+  function setCopy(b) {
+    [].slice.call(document.querySelectorAll('[data-b]')).forEach(function (el) {
+      if (el.dataset.a === undefined) el.dataset.a = el.textContent;
+      el.textContent = b ? el.dataset.b : el.dataset.a;
+    });
+    document.body.classList.toggle('txt-b', b);
+    if (btnA && btnB) { btnA.setAttribute('aria-pressed', !b); btnB.setAttribute('aria-pressed', b); }
+    try { localStorage.setItem('amz2-copy', b ? 'b' : 'a'); } catch (e) {}
+  }
+  if (btnA && btnB) {
+    btnA.addEventListener('click', function () { setCopy(false); });
+    btnB.addEventListener('click', function () { setCopy(true); });
+    try { if (localStorage.getItem('amz2-copy') === 'b') setCopy(true); } catch (e) {}
+  }
+
   /* --- 5. Calendesk: dopasowanie wysokości ramki i przewijanie do kroku --- */
   window.addEventListener('message', function (e) {
     var d = e.data;
