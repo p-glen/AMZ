@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Tokeny projektowe v2. Jedyne miejsce, gdzie definiujemy kolory, typografię,
+   odstępy i kształty. Reszta CSS używa tylko zmiennych z tego pliku.
+   ========================================================================== */
+
+:root {
+  /* --- Kolor: powierzchnie i tekst (motyw jasny) --- */
+  --bg:        #f3f2ef;
+  --surface:   #ffffff;
+  --ink:       #1b1b1b;
+  --ink-soft:  #6f6f6a;
+  --line:      #cfcdc8;
+
+  /* --- Kolor: akcent (jeden, używany świadomie) --- */
+  --accent:    #c5f700;
+  --on-accent: #14141a;
+
+  /* --- Typografia --- */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* skala (płynna: min, preferowana, max) */
+  --fs-0: clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem);  /* tekst pomocniczy */
+  --fs-1: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);       /* tekst podstawowy */
+  --fs-2: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);      /* nagłówek małego poziomu */
+  --fs-3: clamp(1.75rem, 1.3rem + 2vw, 3rem);           /* nagłówek sekcji */
+  --fs-4: clamp(2.5rem, 1.6rem + 4.2vw, 5.5rem);        /* nagłówek główny */
+  --lh-tight: 1.02;
+  --lh-snug:  1.2;
+  --lh-body:  1.5;
+  --tracking-display: -0.03em;
+
+  /* --- Odstępy (skala 4px) --- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  /* --- Układ --- */
+  --container: 80rem;      /* maks. szerokość treści */
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --section-y: clamp(4rem, 9vw, 8rem);
+
+  /* --- Kształt i ruch --- */
+  --radius: 2px;           /* jeden promień dla całej strony; zmieniasz tu */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-1: 180ms;
+  --dur-2: 420ms;
+}
+
+/* Motyw ciemny: ustawiany atrybutem data-theme="dark" albo systemem, jeśli brak wyboru */
+:root[data-theme="dark"] {
+  --bg:        #121212;
+  --surface:   #1c1c1c;
+  --ink:       #ededed;
+  --ink-soft:  #9a9a94;
+  --line:      #3a3a38;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #121212;
+    --surface:   #1c1c1c;
+    --ink:       #ededed;
+    --ink-soft:  #9a9a94;
+    --line:      #3a3a38;
+  }
+}
