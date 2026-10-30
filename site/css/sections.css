@@ -14,7 +14,13 @@
 .site-header a { pointer-events: auto; text-decoration: none; }
 .wordmark { font-size: var(--fs-0); font-weight: 500; letter-spacing: var(--tracking-caps); text-transform: uppercase; }
 .site-nav { display: flex; gap: var(--space-5); font-size: var(--fs-0); letter-spacing: 0.1em; text-transform: uppercase; }
-.site-nav--right { justify-self: end; }
+.site-nav--right { justify-self: end; align-items: center; pointer-events: none; }
+.site-nav--right > * { pointer-events: auto; }
+.theme-toggle { display: inline-grid; place-items: center; width: 2rem; height: 2rem; padding: 0; background: none; border: 0; color: inherit; cursor: pointer; }
+.theme-toggle svg { grid-area: 1 / 1; transition: opacity var(--dur-1), transform var(--dur-2) var(--ease); }
+.theme-toggle .ico-moon { opacity: 0; transform: rotate(-60deg) scale(.6); }
+:root[data-theme="dark"] .theme-toggle .ico-sun { opacity: 0; transform: rotate(60deg) scale(.6); }
+:root[data-theme="dark"] .theme-toggle .ico-moon { opacity: 1; transform: none; }
 .site-nav a:hover { text-decoration: underline; text-underline-offset: 0.35em; }
 @media (max-width: 40rem) { .site-nav--left { display: none; } .site-header { grid-template-columns: auto 1fr; } .wordmark { grid-column: 1; } }
 

@@ -5,6 +5,14 @@
   var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
+  /* --- 0a. Przełącznik motywu (jasny domyślnie) --- */
+  var tt = document.getElementById('theme-toggle');
+  if (tt) tt.addEventListener('click', function () {
+    var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('amz2-theme', next); } catch (e) {}
+  });
+
   /* --- 0. Hero: ekran środkowy kratki; sąsiednie ekrany pojawiają się przy oddalaniu (scroll) --- */
   (function () {
     var world = document.querySelector('.hero__world'); if (!world) return;

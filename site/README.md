@@ -32,7 +32,7 @@ Postęp przypiętej sekcji (0..1) trafia do zmiennej CSS `--p`; wszystkie efekty
 
 - Style sekcji używają wyłącznie zmiennych z `tokens.css` (żadnych „magicznych" kolorów i px w sekcjach).
 - Jeden promień (`--radius`) i jeden akcent (`--accent`) na całą stronę.
-- Motyw: `data-theme="light|dark"` na `<html>`; bez wyboru działa ustawienie systemu.
+- Motyw: `data-theme="light|dark"` na `<html>`; domyślnie jasny, wybór zapamiętany w localStorage (amz2-theme), przełącznik obok „Pogadajmy”.
 - Dostępność od początku: link „Przejdź do treści", widoczny fokus, `prefers-reduced-motion`.
 - Zdjęcia: do repo trafiają tylko z potwierdzonym autorem i zgodą (lista w `GAPS.md`).
 - `noindex` w `index.html` zdjąć dopiero przy publikacji wersji 2 na głównym adresie.
