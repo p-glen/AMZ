@@ -11,8 +11,8 @@
     var imgs = ['going-tixy', 'www-rejjie', 'mata-pge', 'jimek', 'zarcie', 'rapstacja', 'padel', 'flylo-1', 'flylo-3', 'portrait-bw', 'portrait-editorial', 'portrait-teal', 'talk-gs-1', 'talk-musictech', 'www-poster', 'mata-narodowy'];
     var words = ['20 lat w branży', 'Tysiące wydarzeń', 'Sponsoring', 'PR, media, marketing', 'Ticketing', 'Produkcja', 'Skalowanie biznesu', 'Relacje'];
     var n = 0, w = 0, html = '';
-    for (var j = -2; j <= 2; j++) for (var i = -2; i <= 2; i++) {
-      if (!i && !j) continue;
+    for (var j = -1; j <= 1; j++) for (var i = -1; i <= 1; i++) {
+      if (Math.abs(i) !== 1 || Math.abs(j) !== 1) continue;
       var t = ((i + 2) * 7 + (j + 2) * 3) % 4, st = ' style="--i:' + i + ';--j:' + j + '"';
       if (t === 1) html += '<div class="hero__nb hero__nb--accent"' + st + '><span>' + words[w++ % words.length] + '</span></div>';
       else html += '<div class="hero__nb"' + st + '><img src="assets/img/' + imgs[n++ % imgs.length] + '.jpg" alt="" loading="lazy"></div>';

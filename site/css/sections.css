@@ -24,8 +24,8 @@
 .pin__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 
 /* ---------- 1. Hero ---------- */
-.hero { --pin-vh: 360; background: var(--ink); color: #fff; }
-.hero__world { --g: 7vmin; position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: scale(calc(1 - min(1, var(--p) * 2.2) * 0.72)); transform-origin: 0 0; will-change: transform; }
+.hero { --pin-vh: 360; background: var(--bg); color: #fff; }
+.hero__world { --g: 3vmin; position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: scale(calc(1 - min(1, var(--p) * 2.4) * 0.15)); transform-origin: 0 0; will-change: transform; }
 .hero__tile, .hero__nb { position: absolute; width: 100vw; height: 100vh; left: calc(-50vw + var(--i, 0) * (100vw + var(--g))); top: calc(-50vh + var(--j, 0) * (100vh + var(--g))); overflow: hidden; background: #000; }
 .hero__nb { background: #fff; color: #1f1f1c; }
 .hero__nb--accent { background: #e4dccb; }
