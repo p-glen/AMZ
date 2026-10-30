@@ -5,6 +5,17 @@
   var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
+  /* --- 0b. Przełącznik gradientu w tle hero (narzędzie robocze) --- */
+  var gt = document.getElementById('glow-toggle');
+  function setGlow(on) {
+    document.body.classList.toggle('no-glow', !on);
+    if (gt) gt.setAttribute('aria-pressed', on);
+    try { localStorage.setItem('amz2-glow', on ? '1' : '0'); } catch (e) {}
+  }
+  var glowOn = true; try { glowOn = localStorage.getItem('amz2-glow') !== '0'; } catch (e) {}
+  setGlow(glowOn);
+  if (gt) gt.addEventListener('click', function () { setGlow(gt.getAttribute('aria-pressed') !== 'true'); });
+
   /* --- 0a. Przełącznik motywu (jasny domyślnie) --- */
   var tt = document.getElementById('theme-toggle');
   if (tt) tt.addEventListener('click', function () {

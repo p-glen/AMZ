@@ -240,6 +240,8 @@ a.row:hover, .row--hover:hover { padding-left: var(--space-4); }
 .copy-switch { position: fixed; left: var(--gutter); bottom: var(--space-4); z-index: 60; display: flex; align-items: center; gap: 2px; padding: 3px 4px 3px 8px; background: var(--bg); color: var(--ink); border: 1px solid var(--line); font-size: 0.6875rem; line-height: 1; }
 .copy-switch span { color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.12em; margin-right: 6px; font-size: 0.625rem; }
 .copy-switch button { background: transparent; border: 1px solid transparent; padding: 4px 8px; font-size: 0.6875rem; line-height: 1; }
+.copy-switch .glow-toggle { margin-left: 4px; display: inline-grid; place-items: center; }
+body.no-glow .hero__glow { display: none; }
 .copy-switch button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--bg); }
 body:not(.txt-b) .b-only { display: none; }
 body:not(.txt-c) .c-only { display: none; }
