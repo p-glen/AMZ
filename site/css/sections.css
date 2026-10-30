@@ -30,8 +30,17 @@
 .pin__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
 
 /* ---------- 1. Hero ---------- */
-.hero { --pin-vh: 360; background: #f5f3ef; color: #fff; }
-.hero__world { --g: 3vmin; position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: scale(calc(1 - min(1, var(--p) * 2.4) * 0.15)); transform-origin: 0 0; will-change: transform; }
+.hero { --pin-vh: 360; background: var(--bg); color: #fff; }
+.hero__world { --g: 4vmin; position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: scale(calc(1 - min(1, var(--p) * 2.4) * 0.15)); transform-origin: 0 0; will-change: transform; }
+.hero__glow { position: absolute; inset: -25%; opacity: clamp(0, calc((var(--p) - 0.02) * 5), 1); filter: blur(28px) saturate(1.5); animation: oil 14s ease-in-out infinite alternate, oilhue 22s linear infinite;
+  background:
+    radial-gradient(38% 42% at 22% 28%, #ff2fa0 0, transparent 70%),
+    radial-gradient(36% 40% at 78% 24%, #00d5ff 0, transparent 70%),
+    radial-gradient(40% 38% at 70% 78%, #ffd400 0, transparent 70%),
+    radial-gradient(38% 40% at 26% 74%, #7a3cff 0, transparent 70%),
+    radial-gradient(30% 30% at 50% 50%, #19e6a0 0, transparent 70%); }
+@keyframes oil { 0% { transform: rotate(0) scale(1); } 50% { transform: rotate(14deg) scale(1.12) translate(3%, -2%); } 100% { transform: rotate(-10deg) scale(1.04) translate(-3%, 3%); } }
+@keyframes oilhue { to { filter: blur(28px) saturate(1.5) hue-rotate(360deg); } }
 .hero__tile, .hero__nb { position: absolute; width: 100vw; height: 100vh; left: calc(-50vw + var(--i, 0) * (100vw + var(--g))); top: calc(-50vh + var(--j, 0) * (100vh + var(--g))); overflow: hidden; background: #000; }
 .hero__nb { background: #fff; color: #1f1f1c; }
 .hero__nb--accent { background: #e4dccb; }
@@ -219,6 +228,7 @@ a.row:hover, .row--hover:hover { padding-left: var(--space-4); }
 
 /* ---------- Mniej ruchu: bez przypinania, końcowy stan od razu ---------- */
 @media (prefers-reduced-motion: reduce) {
+  .hero__glow { animation: none; }
   .pin { height: auto; --p: 1 !important; }
   .pin__stage { position: relative; height: auto; min-height: 100svh; }
   .hero__img { filter: none; transform: none; }
