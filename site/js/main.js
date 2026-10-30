@@ -4,6 +4,55 @@
   var root = document.documentElement;
   var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+
+  /* --- 0. Wejście: kratka ekranów (jak galeria prac), zoom do środkowego ekranu = hero --- */
+  (function () {
+    var q = location.search.indexOf('nointro') > -1;
+    if (calm || q || window.scrollY > 40 || !document.querySelector('.hero') || !Element.prototype.animate) return;
+    var imgs = ['going-tixy', 'www-rejjie', 'mata-pge', 'jimek', 'zarcie', 'rapstacja', 'padel', 'flylo-1', 'flylo-3', 'portrait-bw', 'portrait-editorial', 'portrait-teal', 'talk-gs-1', 'talk-musictech', 'www-poster', 'mata-narodowy'];
+    var words = ['20 lat w branży', 'Tysiące wydarzeń', 'Sponsoring', 'PR, media, marketing', 'Ticketing', 'Produkcja', 'Skalowanie biznesu', 'Relacje'];
+    var n = 0, w = 0;
+    function img(cls, i) { var s = 'assets/img/' + imgs[i % imgs.length] + '.jpg'; return '<img' + (cls ? ' class="' + cls + '"' : '') + ' src="' + s + '" alt="">'; }
+    var tiles = '';
+    for (var i = 0; i < 25; i++) {
+      if (i === 12) {
+        tiles += '<div class="gate__tile gate__hero"><div class="gate__top">Anna Maria</div><div class="gate__bot">Żurek</div><div class="gate__core" id="gate-core"><img src="assets/img/hero.jpg" alt=""></div></div>';
+        continue;
+      }
+      var t = (i * 7 + (i >> 2)) % 4;
+      if (t === 0) tiles += '<div class="gate__tile">' + img('', n++) + '</div>';
+      else if (t === 1) tiles += '<div class="gate__tile gate__tile--accent"><div class="gate__word">' + words[w++ % words.length] + '</div></div>';
+      else if (t === 2) tiles += '<div class="gate__tile"><div class="gate__word gate__word--low">' + words[w++ % words.length] + '</div>' + img('gate__mini', n++).replace('class="gate__mini"', 'class="gate__mini" style="right:8vw;top:10vh"') + '</div>';
+      else tiles += '<div class="gate__tile">' + img('', n++) + '</div>';
+    }
+    var gate = document.createElement('div');
+    gate.className = 'gate'; gate.setAttribute('aria-hidden', 'true');
+    gate.innerHTML = '<div class="gate__grid" id="gate-grid">' + tiles + '</div>';
+    document.body.appendChild(gate);
+    root.classList.add('intro-on');
+    var grid = document.getElementById('gate-grid'), core = document.getElementById('gate-core');
+    var done = false;
+    function finish() {
+      if (done) return; done = true;
+      gate.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 450, fill: 'forwards' }).onfinish = function () { gate.remove(); root.classList.remove('intro-on'); };
+    }
+    var e = 'cubic-bezier(.7,0,.2,1)';
+    var zoom = grid.animate([
+      { transform: 'translate(-50%,-50%) scale(.28)' },
+      { transform: 'translate(-50%,-50%) scale(.28)', offset: .2 },
+      { transform: 'translate(-50%,-50%) scale(1.12)' }
+    ], { duration: 2600, easing: e, fill: 'forwards' });
+    zoom.onfinish = function () {
+      var top = gate.querySelectorAll('.gate__top,.gate__bot');
+      [].forEach.call(top, function (el) { el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, fill: 'forwards' }); });
+      core.animate([
+        { width: '12vw', height: '15vh' },
+        { width: '100vw', height: '100vh' }
+      ], { duration: 900, easing: e, fill: 'forwards' }).onfinish = finish;
+    };
+    gate.addEventListener('click', function () { zoom.cancel(); finish(); });
+  })();
+
   /* --- 1. Postęp sekcji przypiętych: 0 (początek) .. 1 (koniec) --- */
   var pins = [].slice.call(document.querySelectorAll('.pin'));
   var ticking = false;
