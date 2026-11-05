@@ -7,10 +7,10 @@
   <meta name="description" content="Anna Maria Żurek: od dwóch dekad po obu stronach kurtyny. Wydarzenia, artyści, marki i biznes.">
   <!-- Wersja robocza (v2): nie indeksować, dopóki nie będzie gotowa. Usuń przy publikacji. -->
   <meta name="robots" content="noindex, nofollow">
-  <script>document.documentElement.classList.add('js');try{document.documentElement.dataset.theme=localStorage.getItem('amz3-theme')||'light'}catch(e){document.documentElement.dataset.theme='light'}</script>
+  <script>document.documentElement.classList.add('js');try{document.documentElement.dataset.theme=localStorage.getItem('amz3-theme')||'light';document.documentElement.dataset.color=localStorage.getItem('amz3-color')||'a';document.documentElement.dataset.style=localStorage.getItem('amz3-style')||'a'}catch(e){document.documentElement.dataset.theme='light';document.documentElement.dataset.color='a';document.documentElement.dataset.style='a'}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/sections.css">
@@ -72,9 +72,14 @@
           </div>
         </div>
 
-        <div class="c-only slogans" aria-label="Hasła"><span>20 lat w branży</span><span>Tysiące wydarzeń</span><span>Sponsoring</span><span>PR, media, marketing</span><span>Partnerzy i pracownicy</span><span>Produkcja i organizacja</span><span>Skalowanie biznesu</span><span>Ticketing</span><span>Bliskie wieloletnie relacje</span></div>
+        <ul class="c-only slogans" aria-label="Hasła"><li>20 lat w branży</li><li>Tysiące wydarzeń</li><li>Sponsoring</li><li>PR, media, marketing</li><li>Partnerzy i pracownicy</li><li>Produkcja i organizacja</li><li>Skalowanie biznesu</li><li>Ticketing</li><li>Bliskie wieloletnie relacje</li></ul>
 
         <div class="intro__cols">
+          <div class="intro__c c-only reveal">
+            <p class="intro__big">Od pierwszego pomysłu po ostatni przelew.</p>
+            <p class="intro__small">Od ponad 20 lat działam 360° wokół sceny muzycznej.</p>
+            <div class="actions"><a class="btn btn--solid" href="#projekty">Zobacz projekty</a></div>
+          </div>
           <div class="prose reveal ab-only">
             <p>W większym lub mniejszym stopniu działałam przy – lekko szacując – ~50.000 wydarzeń. Jak to możliwe?</p>
             <p>Jestem współzałożycielką w 2015 bileterii Going., którą pożegnałam w 2023. A już wcześniej organizowałam wydarzenia w całej Polsce (sprawdź cykl koncertów zagranicznych gwiazd World Wide Warsaw oraz zloty food trucków Żarcie Na Kółkach).</p>
@@ -403,14 +408,25 @@
     </div>
   </footer>
 
-  <div class="copy-switch" role="group" aria-label="Wersja tekstów (narzędzie robocze)">
-    <span>Teksty</span>
-    <button type="button" data-copy-mode="a" aria-pressed="true" aria-label="Wersja tekstów A">A</button>
-    <button type="button" data-copy-mode="b" aria-pressed="false" aria-label="Wersja tekstów B">B</button>
-    <button type="button" data-copy-mode="c" aria-pressed="false" aria-label="Wersja tekstów C">C</button>
-    <button type="button" id="glow-toggle" class="glow-toggle" aria-pressed="true" aria-label="Gradientowe tło hero: włącz / wyłącz" title="Gradient w tle hero">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3c3 4 6 6.5 6 10a6 6 0 0 1-12 0c0-3.5 3-6 6-10z"/></svg>
-    </button>
+  <div class="copy-switch" role="group" aria-label="Narzędzia robocze: teksty, kolor, styl">
+    <div class="cs-row"><span>Teksty</span>
+      <button type="button" data-copy-mode="a" aria-pressed="true" aria-label="Wersja tekstów A">A</button>
+      <button type="button" data-copy-mode="b" aria-pressed="false" aria-label="Wersja tekstów B">B</button>
+      <button type="button" data-copy-mode="c" aria-pressed="false" aria-label="Wersja tekstów C">C</button>
+      <button type="button" id="glow-toggle" class="glow-toggle" aria-pressed="true" aria-label="Gradientowe tło hero: włącz / wyłącz" title="Gradient w tle hero">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3c3 4 6 6.5 6 10a6 6 0 0 1-12 0c0-3.5 3-6 6-10z"/></svg>
+      </button>
+    </div>
+    <div class="cs-row"><span>Kolor</span>
+      <button type="button" data-pick="color" data-val="a" aria-pressed="true" aria-label="Paleta A: kremowa z pomarańczem">A</button>
+      <button type="button" data-pick="color" data-val="b" aria-pressed="false" aria-label="Paleta B: czerń, pomarańcz, błękit lodowca">B</button>
+      <button type="button" data-pick="color" data-val="c" aria-pressed="false" aria-label="Paleta C: biel, fiolet, róż">C</button>
+    </div>
+    <div class="cs-row"><span>Styl</span>
+      <button type="button" data-pick="style" data-val="a" aria-pressed="true" aria-label="Styl A: spokojny">A</button>
+      <button type="button" data-pick="style" data-val="b" aria-pressed="false" aria-label="Styl B: odważny">B</button>
+      <button type="button" data-pick="style" data-val="c" aria-pressed="false" aria-label="Styl C: szeroki i miękki">C</button>
+    </div>
   </div>
 
   <div class="preview" id="preview" aria-hidden="true"><img alt="" src=""></div>

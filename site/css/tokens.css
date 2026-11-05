@@ -81,3 +81,48 @@
     --on-accent: #f1eee8;
   }
 }
+
+/* ==========================================================================
+   Palety (przełącznik "Kolor"): A = kremowa + pomarańcz (domyślna),
+   B = obsydian, pomarańcz, błękit lodowca, C = biel, fiolet, róż.
+   Każda ma wariant jasny i ciemny (przełącznik słońce/księżyc).
+   Zmienne gradu zdjęć: --img-grade (filtr) i --grade-overlay (nakładka).
+   ========================================================================== */
+:root {
+  --on-hot: #1c1511;
+  --cool: #0aa3a0;
+  --g1: #ff5a14; --g2: #ffb000; --g3: #ff2d1a; --g4: #0aa3a0; --g5: #ff8a3d;
+  --img-grade: saturate(1);
+  --grade-overlay: none;
+}
+:root[data-color="b"] {
+  --bg: #eef8fb; --surface: #ffffff; --ink: #0c0c0a; --ink-soft: #4b5557; --line: #c4dce3;
+  --accent: #77e7fe; --hot: #f15419; --on-hot: #0c0c0a; --cool: #77e7fe;
+  --dark-bg: #0c0c0a; --dark-ink: #f1f6f7;
+  --g1: #f15419; --g2: #77e7fe; --g3: #ff7a45; --g4: #3fc9e6; --g5: #f15419;
+  --img-grade: contrast(1.07) saturate(1.15);
+  --grade-overlay: radial-gradient(70% 70% at 100% 100%, rgb(119 231 254 / .55), transparent 70%), linear-gradient(120deg, rgb(241 84 25 / .40), transparent 55%);
+}
+:root[data-color="b"][data-theme="dark"] {
+  --bg: #0c0c0a; --surface: #161613; --ink: #f4f1ec; --ink-soft: #a9a7a0; --line: #2c2c28;
+  --accent: #123a45; --hot: #f15419; --on-hot: #0c0c0a;
+}
+:root[data-color="c"] {
+  --bg: #f0f0f0; --surface: #ffffff; --ink: #0e1024; --ink-soft: #55576b; --line: #d7d8e2;
+  --accent: #fe85f0; --hot: #105bff; --on-hot: #ffffff; --cool: #fe85f0;
+  --dark-bg: #0e1024; --dark-ink: #f0f0f0;
+  --g1: #105bff; --g2: #fe85f0; --g3: #7a5cff; --g4: #ffc7f6; --g5: #3f7bff;
+  --img-grade: saturate(.92) hue-rotate(-14deg) brightness(1.04);
+  --grade-overlay: linear-gradient(140deg, rgb(16 91 255 / .45), rgb(254 133 240 / .40));
+}
+:root[data-color="c"][data-theme="dark"] {
+  --bg: #0b0d1c; --surface: #14172b; --ink: #f0f0f0; --ink-soft: #a2a5bd; --line: #2b2f4a;
+  --accent: #3a1f45; --hot: #4d85ff; --on-hot: #0b0d1c;
+}
+
+/* ==========================================================================
+   Style (przełącznik "Styl"): A = spokojny, B = odważny, C = szeroki i miękki.
+   ========================================================================== */
+:root { --fw-display: 600; --stretch: 100%; --bw: 4px; --round: 0px; --bar-h: 5px; }
+:root[data-style="b"] { --fw-display: 900; --stretch: 100%; --bw: 6px; --round: 0px; --bar-h: 12px; --tracking-display: -0.045em; }
+:root[data-style="c"] { --fw-display: 800; --stretch: 125%; --bw: 3px; --round: 22px; --bar-h: 10px; }

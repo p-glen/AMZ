@@ -5,12 +5,32 @@
   var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
-  /* --- 0c. Pas haseł: przewijany nieskończenie (treść zduplikowana) --- */
-  [].forEach.call(document.querySelectorAll('.slogans'), function (s) {
-    var track = document.createElement('div'); track.className = 'slogans__track';
-    track.innerHTML = s.innerHTML + s.innerHTML + s.innerHTML + s.innerHTML;
-    s.innerHTML = ''; s.appendChild(track);
+  /* --- 0c. Przełączniki Kolor / Styl (narzędzie robocze) --- */
+  [].forEach.call(document.querySelectorAll('[data-pick]'), function (btn) {
+    btn.addEventListener('click', function () {
+      var k = btn.dataset.pick, v = btn.dataset.val;
+      root.dataset[k] = v;
+      try { localStorage.setItem('amz3-' + k, v); } catch (e) {}
+      mark();
+    });
   });
+  function mark() {
+    [].forEach.call(document.querySelectorAll('[data-pick]'), function (b) { b.setAttribute('aria-pressed', root.dataset[b.dataset.pick] === b.dataset.val); });
+  }
+  mark();
+
+  /* --- 0d. Nagłówki: słowa wysuwają się spod maski przy wejściu w kadr --- */
+  function splitHeads() {
+    if (calm) return;
+    [].forEach.call(document.querySelectorAll('.h2, .statement, .intro__big'), function (el) {
+      if (el.classList.contains('split')) { var plain = el.textContent; el.classList.remove('split'); el.textContent = plain; }
+      var words = el.textContent.trim().split(/\s+/);
+      el.setAttribute('aria-label', el.textContent.trim());
+      el.innerHTML = words.map(function (w, i) { return '<span class="w" aria-hidden="true"><span style="--i:' + i + '">' + w + '</span></span>'; }).join(' ');
+      el.classList.add('split');
+      if (!el.classList.contains('reveal')) { var o = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { el.classList.add('in'); o.disconnect(); } }); }, { threshold: 0.3 }); o.observe(el); }
+    });
+  }
 
   /* --- 0b. Przełącznik gradientu w tle hero (narzędzie robocze) --- */
   var gt = document.getElementById('glow-toggle');
@@ -139,6 +159,7 @@
     document.body.classList.toggle('txt-c', mode === 'c');
     modeBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.copyMode === mode); });
     try { localStorage.setItem('amz3-copy', mode); } catch (e) {}
+    splitHeads();
   }
   if (modeBtns.length) {
     modeBtns.forEach(function (b) { b.addEventListener('click', function () { setCopy(b.dataset.copyMode); }); });
