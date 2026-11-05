@@ -5,24 +5,19 @@
   var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
-  /* --- 0e. Panel haseł: komórki wymieniają się zawartością (jak logotypy partnerów) --- */
+  /* --- 0e. Panel haseł 4x2: słowa wymieniają się z jednym ukrytym (jak partnerzy na liście) --- */
   (function () {
     var grid = document.querySelector('.slogans'); if (!grid || calm) return;
-    var cells = [].slice.call(grid.children), visible = false;
+    var cells = [].slice.call(grid.children), pool = [grid.dataset.pool], visible = false, last = -1;
     new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0.2 }).observe(grid);
-    function swap() {
+    setInterval(function () {
       if (!visible || document.hidden) return;
-      var a = cells[Math.floor(Math.random() * cells.length)], b;
-      do { b = cells[Math.floor(Math.random() * cells.length)]; } while (b === a);
-      a.classList.add('out'); b.classList.add('out');
-      setTimeout(function () {
-        var ca = a.firstElementChild, cb = b.firstElementChild;
-        a.classList.toggle('ph', cb.querySelector('img') !== null); b.classList.toggle('ph', ca.querySelector('img') !== null);
-        a.appendChild(cb); b.appendChild(ca);
-        a.classList.remove('out'); b.classList.remove('out');
-      }, 300);
-    }
-    setInterval(swap, 1900);
+      var i; do { i = Math.floor(Math.random() * cells.length); } while (i === last);
+      last = i;
+      var cell = cells[i], sc = cell.firstElementChild;
+      cell.classList.add('out');
+      setTimeout(function () { pool.push(sc.textContent); sc.textContent = pool.shift(); cell.classList.remove('out'); }, 300);
+    }, 1500);
   })();
 
   /* --- 0c. Przełączniki Kolor / Styl (narzędzie robocze) --- */
@@ -84,6 +79,11 @@
       else html += '<div class="hero__nb"' + st + '><img src="assets/img/' + imgs[n++ % imgs.length] + '.jpg" alt="" loading="lazy"></div>';
     }
     world.insertAdjacentHTML('afterbegin', html);
+    var auras = '<div class="hero__aura" style="--i:0;--j:0"><img src="' + document.querySelector('.hero__img').getAttribute('src') + '" alt=""></div>';
+    [].forEach.call(world.querySelectorAll('.hero__nb'), function (nb) {
+      auras += '<div class="hero__aura" style="' + nb.getAttribute('style') + '"><img src="' + nb.querySelector('img').getAttribute('src') + '" alt=""></div>';
+    });
+    world.insertAdjacentHTML('afterbegin', '<div class="hero__auras" aria-hidden="true">' + auras + '</div>');
   })();
 
   /* --- 1. Postęp sekcji przypiętych: 0 (początek) .. 1 (koniec) --- */
