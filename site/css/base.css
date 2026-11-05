@@ -51,7 +51,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
 }
 .btn:hover { border-color: var(--ink); }
-.btn--solid { background: var(--hot); color: #1c1511; border-color: var(--hot); font-weight: 600; }
+.btn--solid { background: var(--hot); color: var(--on-hot); border-color: var(--hot); font-weight: 600; }
 .btn--solid:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 
 :focus-visible {

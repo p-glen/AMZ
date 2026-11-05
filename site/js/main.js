@@ -5,6 +5,26 @@
   var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
+  /* --- 0e. Panel haseł: komórki wymieniają się zawartością (jak logotypy partnerów) --- */
+  (function () {
+    var grid = document.querySelector('.slogans'); if (!grid || calm) return;
+    var cells = [].slice.call(grid.children), visible = false;
+    new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }, { threshold: 0.2 }).observe(grid);
+    function swap() {
+      if (!visible || document.hidden) return;
+      var a = cells[Math.floor(Math.random() * cells.length)], b;
+      do { b = cells[Math.floor(Math.random() * cells.length)]; } while (b === a);
+      a.classList.add('out'); b.classList.add('out');
+      setTimeout(function () {
+        var ca = a.firstElementChild, cb = b.firstElementChild;
+        a.classList.toggle('ph', cb.querySelector('img') !== null); b.classList.toggle('ph', ca.querySelector('img') !== null);
+        a.appendChild(cb); b.appendChild(ca);
+        a.classList.remove('out'); b.classList.remove('out');
+      }, 300);
+    }
+    setInterval(swap, 1900);
+  })();
+
   /* --- 0c. Przełączniki Kolor / Styl (narzędzie robocze) --- */
   [].forEach.call(document.querySelectorAll('[data-pick]'), function (btn) {
     btn.addEventListener('click', function () {

@@ -120,6 +120,10 @@
   --accent: #3a1f45; --hot: #4d85ff; --on-hot: #0b0d1c;
 }
 
+/* Kolor akcentu użyty jako TEKST (duże "+", cyfry): ciemniejszy w jasnych motywach, żeby spełnić kontrast WCAG */
+:root { --hot-ink: #d03f08; }
+:root[data-theme="dark"], :root[data-color="c"] { --hot-ink: var(--hot); }
+
 /* ==========================================================================
    Style (przełącznik "Styl"): A = spokojny, B = odważny, C = szeroki i miękki.
    ========================================================================== */
