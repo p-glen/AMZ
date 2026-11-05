@@ -4,8 +4,26 @@
     {
       "name": "wireframe",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4173", "--directory", "wireframe"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4173",
+        "--directory",
+        "wireframe"
+      ],
       "port": 4173
+    },
+    {
+      "name": "v2",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4174",
+        "--directory",
+        "site"
+      ],
+      "port": 4174
     }
   ]
 }

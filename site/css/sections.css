@@ -32,15 +32,14 @@
 /* ---------- 1. Hero ---------- */
 .hero { --pin-vh: 360; background: var(--bg); color: #fff; }
 .hero__world { --g: 4vmin; position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: scale(calc(1 - min(1, var(--p) * 2.4) * 0.15)); transform-origin: 0 0; will-change: transform; }
-.hero__glow { position: absolute; inset: -25%; opacity: clamp(0, calc((var(--p) - 0.02) * 5), 1); filter: blur(28px) saturate(1.5); animation: oil 14s ease-in-out infinite alternate, oilhue 22s linear infinite;
+.hero__glow { position: absolute; inset: -25%; opacity: clamp(0, calc((var(--p) - 0.02) * 5), 1); filter: blur(28px) saturate(1.5); animation: oil 14s ease-in-out infinite alternate;
   background:
-    radial-gradient(38% 42% at 22% 28%, #ff2fa0 0, transparent 70%),
-    radial-gradient(36% 40% at 78% 24%, #00d5ff 0, transparent 70%),
-    radial-gradient(40% 38% at 70% 78%, #ffd400 0, transparent 70%),
-    radial-gradient(38% 40% at 26% 74%, #7a3cff 0, transparent 70%),
-    radial-gradient(30% 30% at 50% 50%, #19e6a0 0, transparent 70%); }
+    radial-gradient(40% 44% at 22% 28%, #ff5a14 0, transparent 70%),
+    radial-gradient(36% 40% at 78% 24%, #ffb000 0, transparent 70%),
+    radial-gradient(40% 38% at 70% 78%, #ff2d1a 0, transparent 70%),
+    radial-gradient(38% 40% at 26% 74%, #0aa3a0 0, transparent 70%),
+    radial-gradient(30% 30% at 50% 50%, #ff8a3d 0, transparent 70%); }
 @keyframes oil { 0% { transform: rotate(0) scale(1); } 50% { transform: rotate(14deg) scale(1.12) translate(3%, -2%); } 100% { transform: rotate(-10deg) scale(1.04) translate(-3%, 3%); } }
-@keyframes oilhue { to { filter: blur(28px) saturate(1.5) hue-rotate(360deg); } }
 .hero__tile, .hero__nb { position: absolute; width: 100vw; height: 100vh; left: calc(-50vw + var(--i, 0) * (100vw + var(--g))); top: calc(-50vh + var(--j, 0) * (100vh + var(--g))); overflow: hidden; background: #000; }
 .hero__nb { background: #fff; color: #1f1f1c; }
 .hero__nb--accent { background: #e4dccb; }
@@ -249,6 +248,19 @@ body.txt-c .ab-only { display: none; }
 body.txt-c .origin-more aside { grid-column: 1 / -1; }
 .extra { margin-bottom: var(--space-8); padding-bottom: var(--space-8); border-bottom: 1px solid var(--line); }
 .extra .h2 { margin-bottom: var(--space-5); }
-.slogans { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin-block: var(--space-7); font-size: var(--fs-3); line-height: 1.05; letter-spacing: var(--tracking-display); text-transform: uppercase; font-weight: 500; }
-.slogans span + span::before { content: "/"; margin-right: var(--space-5); color: var(--ink-soft); }
+.slogans { margin: var(--space-7) calc(50% - 50vw); width: 100vw; overflow: hidden; background: var(--hot); color: #1c1511; border-block: 4px solid var(--ink); padding: var(--space-4) 0; font-size: var(--fs-2); line-height: 1; letter-spacing: -0.01em; text-transform: uppercase; font-weight: 700; }
+.slogans__track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+.slogans span { white-space: nowrap; padding-inline: var(--space-5); }
+.slogans span::before { content: "\2197"; margin-right: calc(var(--space-5) * 2); }
+@keyframes marquee { to { transform: translateX(-50%); } }
 
+
+/* ---------- V3: pomarańczowe detale ---------- */
+.h2::after { content: ""; display: block; width: 2.5rem; height: 5px; margin-top: var(--space-4); background: var(--hot); }
+.cnt-plus { color: var(--hot); }
+.stat { border: 4px solid var(--ink); padding: var(--space-5); background: var(--surface); }
+.hero__img { object-position: 50% 30%; }
+.site-nav a:hover { text-decoration-color: var(--hot); }
+.footer__cta a:hover { color: var(--hot); text-decoration-color: var(--hot); }
+.eyebrow::before { content: ""; display: inline-block; width: .6em; height: .6em; margin-right: .6em; background: var(--hot); }
+@media (prefers-reduced-motion: reduce) { .slogans__track { animation: none; } }

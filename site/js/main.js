@@ -5,14 +5,21 @@
   var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
+  /* --- 0c. Pas haseł: przewijany nieskończenie (treść zduplikowana) --- */
+  [].forEach.call(document.querySelectorAll('.slogans'), function (s) {
+    var track = document.createElement('div'); track.className = 'slogans__track';
+    track.innerHTML = s.innerHTML + s.innerHTML + s.innerHTML + s.innerHTML;
+    s.innerHTML = ''; s.appendChild(track);
+  });
+
   /* --- 0b. Przełącznik gradientu w tle hero (narzędzie robocze) --- */
   var gt = document.getElementById('glow-toggle');
   function setGlow(on) {
     document.body.classList.toggle('no-glow', !on);
     if (gt) gt.setAttribute('aria-pressed', on);
-    try { localStorage.setItem('amz2-glow', on ? '1' : '0'); } catch (e) {}
+    try { localStorage.setItem('amz3-glow', on ? '1' : '0'); } catch (e) {}
   }
-  var glowOn = true; try { glowOn = localStorage.getItem('amz2-glow') !== '0'; } catch (e) {}
+  var glowOn = true; try { glowOn = localStorage.getItem('amz3-glow') !== '0'; } catch (e) {}
   setGlow(glowOn);
   if (gt) gt.addEventListener('click', function () { setGlow(gt.getAttribute('aria-pressed') !== 'true'); });
 
@@ -21,13 +28,13 @@
   if (tt) tt.addEventListener('click', function () {
     var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
     root.dataset.theme = next;
-    try { localStorage.setItem('amz2-theme', next); } catch (e) {}
+    try { localStorage.setItem('amz3-theme', next); } catch (e) {}
   });
 
   /* --- 0. Hero: ekran środkowy kratki; sąsiednie ekrany pojawiają się przy oddalaniu (scroll) --- */
   (function () {
     var world = document.querySelector('.hero__world'); if (!world) return;
-    var imgs = ['portrait-teal', 'mata-pge', 'portrait-editorial', 'going-tixy', 'rapstacja', 'www-rejjie', 'zarcie', 'padel'];
+    var imgs = ['p-teal-front', 'mata-pge', 'p-orange-look', 'going-tixy', 'czb-ruch', 'rapstacja', 'p-moody-teal', 'zarcie'];
     var words = ['20 lat w branży', 'Tysiące wydarzeń', 'Sponsoring', 'PR, media, marketing', 'Ticketing', 'Produkcja', 'Skalowanie biznesu', 'Relacje'];
     var n = 0, w = 0, html = '';
     for (var j = -1; j <= 1; j++) for (var i = -1; i <= 1; i++) {
@@ -131,11 +138,11 @@
     document.body.classList.toggle('txt-b', mode === 'b');
     document.body.classList.toggle('txt-c', mode === 'c');
     modeBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.copyMode === mode); });
-    try { localStorage.setItem('amz2-copy', mode); } catch (e) {}
+    try { localStorage.setItem('amz3-copy', mode); } catch (e) {}
   }
   if (modeBtns.length) {
     modeBtns.forEach(function (b) { b.addEventListener('click', function () { setCopy(b.dataset.copyMode); }); });
-    try { var saved = localStorage.getItem('amz2-copy'); if (saved === 'b' || saved === 'c') setCopy(saved); } catch (e) {}
+    var saved = 'c'; try { saved = localStorage.getItem('amz3-copy') || 'c'; } catch (e) {} setCopy(saved);
   }
 
   /* --- 5. Calendesk: dopasowanie wysokości ramki i przewijanie do kroku --- */
