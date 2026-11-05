@@ -1,10 +1,10 @@
 name: Deploy to GitHub Pages
 
-# Główny adres (/AMZ/) = gałąź main (wersja 1). Podgląd nowej wersji (/AMZ/v2/) = gałąź v2.
-# Ten sam plik jest na obu gałęziach, bo każdy deploy podmienia całą stronę.
+# Główny adres (/AMZ/) = gałąź main (wersja 1). Podglądy: /AMZ/v2/ = gałąź v2, /AMZ/v3/ = gałąź v3.
+# Ten sam plik jest na wszystkich gałęziach, bo każdy deploy podmienia całą stronę.
 on:
   push:
-    branches: [main, v2]
+    branches: [main, v2, v3]
   workflow_dispatch:
 
 permissions:
@@ -31,13 +31,18 @@ jobs:
         with:
           ref: v2
           path: v2
-      - name: Złóż stronę (main w katalogu głównym, v2 w /v2/)
+      - uses: actions/checkout@v4
+        with:
+          ref: v3
+          path: v3
+      - name: Złóż stronę (main w katalogu głównym, v2 w /v2/, v3 w /v3/)
         run: |
-          mkdir -p _site/v2
+          mkdir -p _site/v2 _site/v3
           cp -R main/wireframe/. _site/
           # v2: nowy folder site/ jeśli istnieje, w przeciwnym razie wireframe/
           if [ -d v2/site ]; then SRC=v2/site; else SRC=v2/wireframe; fi
           cp -R "$SRC"/. _site/v2/
+          cp -R v3/site/. _site/v3/
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
